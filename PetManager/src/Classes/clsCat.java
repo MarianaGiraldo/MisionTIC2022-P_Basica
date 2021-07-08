@@ -22,6 +22,23 @@ public class clsCat extends clsPet {
     public void SelfCleaning(){
         System.out.println("El gato"+ super.getName() +" se está limpiando. ");
     }
+    
+    
+    @Override
+    public void Sound(){
+        System.out.println("El gato "+ super.getName() + " está mauyando");
+    }
+    
+    @Override
+    public int getNumberOfBones(){
+        return 230;
+    }
+    
+    @Override
+    public String getAnimalType(){
+       return "Gato"; 
+    }
+    
 
     public String getBreed() {
         return breed;
@@ -30,4 +47,7 @@ public class clsCat extends clsPet {
     public void setBreed(String breed) {
         this.breed = breed;
     }
+    
+    
+    
 }   

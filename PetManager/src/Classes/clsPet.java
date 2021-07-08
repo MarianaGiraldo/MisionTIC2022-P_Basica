@@ -5,11 +5,13 @@
  */
 package Classes;
 
+import Intefaces.*;
+
 /**
  *
  * @author maria
  */
-public class clsPet {
+public class clsPet implements IAnimal, IVertebrate {
     
     // atributos
   private String code;
@@ -120,6 +122,16 @@ public class clsPet {
   public void Sound(){
   System.out.println("La mascota " + this.getName() + " está haciendo sonidos.");
   }
+
+    @Override
+    public String getAnimalType() {
+        return "doméstico";
+    }
+
+    @Override
+    public int getNumberOfBones() {
+        return 0;
+    }
 
     
 }
