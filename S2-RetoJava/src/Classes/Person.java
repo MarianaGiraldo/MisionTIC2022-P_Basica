@@ -10,10 +10,10 @@ package Classes;
  * @author maria
  */
 public class Person {
-    private String name;
-    private String lastname;
-    private String id;
-    private String email;
+    private final String name;
+    private final String lastname;
+    private final String id;
+    private final String email;
 
     /**
      *

@@ -7,6 +7,7 @@ package Classes;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -19,6 +20,10 @@ public class Company {
     private List<Employee> employeesList;
     private List<Customer> customersList;
 
+    public Company() {
+    }
+
+    
     public Company(String companyName, String nit, String address, List<Employee> employeesList) {
         this.customersList = new ArrayList<>();
         this.companyName = companyName;
@@ -82,6 +87,75 @@ public class Company {
     public void setCustomersList(List<Customer> customersList) {
         this.customersList = customersList;
     }
-
+    
+    public List createEmployee(Company company, Position cargo, List empleadosList){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Ingrese el nombre del empleado: ");
+        String nombre = sc.nextLine();
+        System.out.print("Ingrese el apellido del empleado: ");
+        String apellido = sc.nextLine();
+        System.out.print("Ingrese el número de documento del empleado: ");
+        String id = sc.nextLine();
+        System.out.print("Ingrese el email del empleado: ");
+        String email = sc.nextLine();
+        System.out.print("Ingrese el salario del empleado: ");
+        int salario = sc.nextInt();
+        sc.nextLine();
+        Employee empleado = new Employee(salario, cargo, company, nombre, apellido, id, email);
+        empleadosList.add(empleado);
+        addEmployee(empleado);
+        return empleadosList;
+    }
+    
+    public AdminEmployee createAdminEmployee(Company company, Position cargo){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Ingrese el nombre del empleado: ");
+        String nombre = sc.nextLine();
+        System.out.print("Ingrese el apellido del empleado: ");
+        String apellido = sc.nextLine();
+        System.out.print("Ingrese el número de documento del empleado: ");
+        String id = sc.nextLine();
+        System.out.print("Ingrese el email del empleado: ");
+        String email = sc.nextLine();
+        System.out.print("Ingrese el salario del empleado: ");
+        int salario = sc.nextInt();
+        sc.nextLine();
+        System.out.print("Ingrese la categoría del empleado Administrador: ");
+        String categoria = sc.nextLine();
+        List<String> subEmployeesList = new ArrayList<>();
+        AdminEmployee empleado = new AdminEmployee(categoria, subEmployeesList, salario, cargo, company, nombre, apellido, id, email);
+        addEmployee(empleado);
+        return empleado;
+    }
+    
+    public Position createPosition(List allSubPositions){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Ingrese el cargo del empleado: ");
+        String cargo1 = sc.nextLine();
+        System.out.print("Ingrese el nivel jerárquico del cargo: ");
+        String hLevel = sc.nextLine();
+        Position cargo = new Position(cargo1,hLevel);
+        allSubPositions.add(cargo);
+        return cargo;
+    }
+    
+    public Customer createCustomer(List customersList){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Ingrese el nombre del cliente: ");
+        String name = sc.nextLine();
+        System.out.print("Ingrese el apellido del cliente: ");
+        String lastname = sc.nextLine();
+        System.out.print("Ingrese el número de documento del cliente: ");
+        String id = sc.nextLine();
+        System.out.print("Ingrese el email del cliente: ");
+        String email = sc.nextLine();
+        System.out.print("Ingrese la dirección del cliente: ");
+        String address = sc.nextLine();
+        System.out.print("Ingrese el celular del cliente: ");
+        String phone = sc.nextLine();
+        Customer customer = new Customer(address, phone, name, lastname, id, email);
+        addCustomer(customer);
+        return customer;
+    }
     
 }

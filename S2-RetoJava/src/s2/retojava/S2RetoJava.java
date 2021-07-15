@@ -8,6 +8,7 @@ package s2.retojava;
 import Classes.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -21,35 +22,171 @@ public class S2RetoJava {
     public static void main(String[] args) {
         List<Employee> empleados = new ArrayList<>();
         
-        Company company = new Company("Super Supermercados SA","918273","Cr 5 #19-85 Bogotá", empleados);
-        Position cajero = new Position("Cajero", "Nivel medio en jerarquía");
+        boolean firstTime = true;
+        boolean runSowfware = true;
+        Scanner sc = new Scanner(System.in);
+        String companyName = null;
         Position administrativo = new Position("Administrativo", "Nivel alto en jerarquía");
-        Employee empleado1 = new Employee(1200000, cajero, company, "Jorge", "Bonilla","79243123", "jorge.bonilla@gmail.com");
-        company.addEmployee(empleado1);
+        List<Position> allSubPositions = new ArrayList<>();
+        Company company = new Company();
         
-        Employee empleado2 = new Employee(1200000, cajero, company, "Luisa", "Cortés","52226456", "luisa.cortes@gmail.com");
-        company.addEmployee(empleado2);
-        
-        List<String> cajeros = new ArrayList<>();
-        cajeros.add(empleado1.getAllName());
-        cajeros.add(empleado2.getAllName());
-        
-        AdminEmployee empleado3 = new AdminEmployee("Jefe de Cajeros", cajeros , 2000000, administrativo, company, "Raúl", "Suarez","7449862", "raulsuarez@hotmail.com");
-        company.addEmployee(empleado3);
-        
-        System.out.println("El empleado "+ empleado3.getAllName()+ " tiene a su cargo los cajeros: " +empleado3.getSubEmployeesList());
-        
-        System.out.println(company.getEmployeesList());
-        
-        Customer cliente1 = new Customer("Avenida 9 #15-50 Funza", "31034650215", "Sara", "Martínez", "1032798564", "sarita123@outlook.com");
-        Customer cliente2 = new Customer("Calle 9 #20-14 Madrid", "3127980215", "Samuel", "Mora", "1032648885", "samuelM10@gmail.com");
-        Customer cliente3 = new Customer("Carrera 5 #3-25 Mosquera", "30039230215", "Paula", "Luna", "5224123", "paula_luna@yahoo.com");
-        
-        company.addCustomer(cliente1);
-        company.addCustomer(cliente2);
-        company.addCustomer(cliente3);
-        
-        System.out.println("La cantidad total de clientes es: " + company.getCustomersList().size());
+        while(runSowfware){
+            if( firstTime ){
+                firstTime = false;
+                System.out.print("Ingrese el nombre de la Empresa: ");
+                companyName = sc.nextLine();
+                System.out.print("Ingrese el NIT de la Empresa: ");
+                String nit = sc.nextLine();
+                System.out.print("Ingrese la dirección de la Empresa: ");
+                String address = sc.nextLine();
+                company = new Company(companyName, nit, address, empleados);
+                
+            } else {
+                System.out.println("------Ingresando datos para la empresa "+ companyName + "------");
+                System.out.println("¿Desea ingresar datos para otra empresa? (True or False)");
+                boolean optionNew = sc.nextBoolean();
+                    sc.nextLine();
+                if (optionNew == true){
+                    firstTime = true;
+                    continue;
+                }
+                System.out.println("Presione enter para continuar");
+                new Scanner(System.in).nextLine();
+            }
+            if(empleados.isEmpty()){
+                System.out.print("¿Cuántos empleados necesita añadir? ");
+                int numEmployees = sc.nextInt();
+                sc.nextLine();
+                if (allSubPositions.isEmpty()){
+                        System.out.print("Ingrese el cargo del empleado: ");
+                        String cargo1 = sc.nextLine();
+                        System.out.print("Ingrese el nivel jerárquico del cargo: ");
+                        String hLevel = sc.nextLine();
+                        Position cargo = new Position(cargo1,hLevel);
+                        allSubPositions.add(cargo);
+                    }
+                for(int i =1; i<= numEmployees; i++){
+                    System.out.println("---Empleado "+i +" ---");
+                    if (allSubPositions.isEmpty()){
+                        System.out.print("Ingrese el cargo del empleado: ");
+                        String cargo1 = sc.nextLine();
+                        System.out.print("Ingrese el nivel jerárquico del cargo: ");
+                        String hLevel = sc.nextLine();
+                        Position cargo = new Position(cargo1,hLevel);
+                        allSubPositions.add(cargo);
+                    }else{
+                        System.out.println("Estos son los cargos añadidos: ");
+                        int j = 0;
+                        for(j = 0; j< allSubPositions.size(); j++){
+                            System.out.println((j+1)+ ".Cargo: " + allSubPositions.get(j).getPositionName());
+                        }
+                        System.out.print((j+1) +"¿Desea añadir un nuevo cargo? (True or False): ");
+                        boolean newPosition = sc.nextBoolean();
+                        sc.nextLine();
+                        if (newPosition){
+                            Position cargo = company.createPosition(allSubPositions);
+                            empleados = company.createEmployee(company, cargo, empleados);
+                            continue;
+                        }
+                        System.out.println("Estos son los cargos disponibles: ");
+                        
+                        for(j = 0; j< allSubPositions.size(); j++){
+                            System.out.println((j+1)+ ".Cargo: " + allSubPositions.get(j).getPositionName());
+                        }
+                        System.out.print("Digite el número del cargo del empleado: ");
+                        int optionPosition = sc.nextInt();
+                        sc.nextLine();
+                        Position cargo = allSubPositions.get(0); //Inicializar cargo
+                        //Asignar cargo según la opción
+                        for(j = 0; j< allSubPositions.size(); j++){
+                            int option = j+1;
+                            if (optionPosition==option)
+                                cargo= allSubPositions.get(j);
+                        }
+                        empleados = company.createEmployee(company, cargo, empleados);
+                    }
+                }
+            }
+            
+            System.out.println("Opciones:\n 1.Agregar empleados administradores. \n 2.Agregar empleados(no admin). \n 3.Ver lista completa de empleados. \n 4.Añadir cliente. \n 5.Ver lista de clientes. \n 6.Salir. ");
+            System.out.print("Opción: ");
+            int option = sc.nextInt();
+            sc.nextLine();
+            switch(option){
+                case 1 -> {
+                    AdminEmployee admin = company.createAdminEmployee(company, administrativo);
+                    int e =1;
+                    System.out.println("Lista de todos los empleados");
+                    for(Employee employee : empleados){
+                        System.out.println(e+". Empleado: "+ employee.getAllName());
+                        e++;
+                    }
+                    System.out.print("¿Cuántos empleados desea agregar como subordinados al administrador? ");
+                    int numSubEmployees = sc.nextInt();
+                    sc.nextLine();
+                    if (numSubEmployees<empleados.size()){
+                        System.out.println("El número es mayor a los empleados disponibles"); 
+                        continue;
+                    }
+                    for(int j=0; j < numSubEmployees; j++){
+                        System.out.print("Digite el numero del empleado a añadir: ");
+                        int employee = sc.nextInt();
+                        Employee subemployee = empleados.get(employee-1);
+                        admin.addSubEmployee(subemployee.getAllName());
+                    }
+                }
+                case 2 ->{
+                    System.out.println("Estos son los cargos añadidos: ");
+                        int j = 0;
+                        for(j = 0; j< allSubPositions.size(); j++){
+                            System.out.println((j+1)+ ".Cargo: " + allSubPositions.get(j).getPositionName());
+                        }
+                        System.out.print((j+1) +"¿Desea añadir un nuevo cargo? (True or False): ");
+                        boolean newPosition = sc.nextBoolean();
+                        sc.nextLine();
+                        if (newPosition){
+                            Position cargo = company.createPosition(allSubPositions);
+                            empleados = company.createEmployee(company, cargo, empleados);
+                            continue;
+                        }
+                        System.out.println("Estos son los cargos disponibles: ");
+                        
+                        for(j = 0; j< allSubPositions.size(); j++){
+                            System.out.println((j+1)+ ".Cargo: " + allSubPositions.get(j).getPositionName());
+                        }
+                        System.out.print("Digite el número del cargo del empleado: ");
+                        int optionPosition = sc.nextInt();
+                        sc.nextLine();
+                        Position cargo = allSubPositions.get(0); //Inicializar cargo
+                        //Asignar cargo según la opción
+                        for(j = 0; j< allSubPositions.size(); j++){
+                            option = j+1;
+                            if (optionPosition==option)
+                                cargo= allSubPositions.get(j);
+                        }
+                        empleados = company.createEmployee(company, cargo, empleados);
+                    }
+                case 3 ->{
+                    int e =1;
+                    System.out.println("Lista de todos los empleados");
+                    for(Employee employee : company.getEmployeesList()){
+                        System.out.println(e+". Empleado: "+ employee.getAllName());
+                        e++;
+                    }
+                }
+                case 4 ->{
+                    company.createCustomer(company.getCustomersList());
+                }
+                case 5 ->{
+                    int e =1;
+                    System.out.println("Lista de todos los cliente");
+                    for(Customer customer : company.getCustomersList()){
+                        System.out.println(e+". Cliente: "+ customer.getAllName());
+                        e++;
+                    }
+                }
+                case 6 ->{runSowfware = false;}
+            }
+        }
     }
-    
 }
