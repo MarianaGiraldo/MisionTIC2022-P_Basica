@@ -28,14 +28,15 @@ public class clsCuerpoCaidaLibre {
     }
     
     public double DistanciaRecorridaXsegundo(){
-        double G=9.8;
-        double t = Math.sqrt((2*altura)/G);
+        double g =9.8;
+        double t = Math.sqrt((2*altura)/g);
         System.out.println("El tiempo en llegar al suelo es de "+t);
-        t = Math.round(t);
-        double distancia = 1;
+        t = Math.floor(t);
+        double distancia =0;
         for(double segundo=1; segundo<=t; segundo++){
-            distancia = ((1/2)*G *(Math.pow(segundo, 2)));
-            System.out.println("Distancia recorrida en el segundo " + segundo + ": "+ distancia);
+            double x = Math.pow(segundo, 2);
+            distancia = g * 1/2 * x;
+            System.out.println("Distancia recorrida en el segundo " + Math.round(segundo) + ": "+ distancia);
         }
         return distancia;
     }

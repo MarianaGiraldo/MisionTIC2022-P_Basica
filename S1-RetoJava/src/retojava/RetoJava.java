@@ -5,11 +5,8 @@
  */
 package retojava;
 
-import Classes.clsAutosRadar;
-import Classes.clsCalculadora;
-import Classes.clsCuerpoCaidaLibre;
-import Classes.clsDispositivosIoT;
-import Classes.clsDistanciaRed;
+import Classes.*;
+import java.util.Scanner;
 
 /**
  *
@@ -21,68 +18,128 @@ public class RetoJava {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        clsCalculadora operacion1 = new clsCalculadora("+",1,3);
-        clsCalculadora operacion2 = new clsCalculadora("-",15,5);
-        clsCalculadora operacion3 = new clsCalculadora("*",4,4); 
+        boolean firstTime = true;
+        boolean runSowfware = true;
+        Scanner sc = new Scanner(System.in);
+
         
-        
-        operacion1.Calcular();
-        operacion2.Calcular();
-        operacion3.Calcular();
-        
-        clsAutosRadar auto1 = new clsAutosRadar();
-        auto1.setPlaca("YYY-456");
-        auto1.setDistancia1(1.3);
-        auto1.setDistancia2(240);
-        auto1.setTiempo(1);
-        auto1.setGr_alcohol(120);
-        
-        clsAutosRadar auto2 = new clsAutosRadar("XXX-123" ,25,200,0.8,155);
-        
-        auto1.MultarVel();
-        auto1.MultarAlcohol();
-        auto2.MultarVel();
-        auto2.MultarAlcohol();
-        
-        clsDispositivosIoT dispositivo1 = new clsDispositivosIoT("eléctrico", "luces", "ON");
-        clsDispositivosIoT dispositivo2 = new clsDispositivosIoT("sensor", "temperatura", "OFF");
-        clsDispositivosIoT dispositivo3 = new clsDispositivosIoT("alarma", "apertura", "ON");
-        clsDispositivosIoT dispositivo4 = new clsDispositivosIoT("sensor", "humedad", "ON");
-        clsDispositivosIoT dispositivo5 = new clsDispositivosIoT("eléctrico", "luces", "OFF");
-     
-        int contadorON = 0;
-        if ("ON".equals(dispositivo1.getEstado())){
-            contadorON++;
+        while(runSowfware){
+            if( firstTime ){
+                firstTime = false;
+            } else {
+                System.out.println();
+                System.out.println("Presione enter para continuar");
+                new Scanner(System.in).nextLine();
+            }
+            
+            System.out.println("Opciones:\n 1.Calculadora. \n 2.Radar de autos. \n 3.Dispositivos IoT. \n 4.Cuerpos en Caída libre. \n 5.Distancia más corta en redes móviles. \n 6.Salir. ");
+            System.out.print("Opción: ");
+            int option = sc.nextInt();
+            
+                    sc.nextLine();
+            switch(option){
+                case 1 -> {
+                    clsCalculadora operacion = new clsCalculadora();
+                    System.out.print("Ingrese el primer número: ");
+                    operacion.setNumero1(sc.nextDouble());
+                    sc.nextLine();
+                    System.out.print("Ingrese el símbolo de la operación a realizar (+,-,*,/): ");
+                    operacion.setOperador(sc.nextLine());
+                    System.out.print("Ingrese el segundo número: ");
+                    operacion.setNumero2(sc.nextDouble());
+                    operacion.Calcular();
+                }
+                case 2 -> {
+                    clsAutosRadar auto = new clsAutosRadar();
+                    System.out.print("Ingrese la placa del vehículo: ");
+                    String placa = sc.nextLine();
+                    auto.setPlaca(placa);
+                    System.out.print("Ingrese la posición 1 en Kilómetros: ");
+                    auto.setDistancia1(sc.nextDouble());
+                    System.out.print("Ingrese la posición 2 en Kilómetros: ");
+                    auto.setDistancia2(sc.nextDouble());
+                    System.out.print("Ingrese el tiempo que duró en llegar a la posición 2 en horas: ");
+                    auto.setTiempo(sc.nextDouble());
+                    System.out.print("Ingrese el grado de alcoholemia del conductor: ");
+                    auto.setGr_alcohol(sc.nextDouble());
+                   auto.MultarVel();
+                   auto.MultarAlcohol();
+                }
+                case 3 -> {
+                    System.out.print("¿Cuántos dispositivos IoT desea añadir?: ");
+                    int cantidad = sc.nextInt();
+                    sc.nextLine();
+                    int contadorON = 0;
+                    for(int i = 1; i<= cantidad; i++){
+                        System.out.println("---Agregando Dispositivo: " + i + "---");
+                        clsDispositivosIoT dispositivo = new clsDispositivosIoT();
+                        System.out.print("Ingrese el tipo de dispositivo (electrico, sensor o alarma): ");
+                        dispositivo.setTipo(sc.nextLine());
+                        if (null == dispositivo.getTipo()){
+                            System.out.println("Tipo de dispositivo incorrecto");
+                            continue;
+                        }else switch (dispositivo.getTipo()) {
+                            case "electrico" -> {
+                                System.out.print("Ingrese el identificador (luces, tomas, entre otros): ");
+                                dispositivo.setIdentificador(sc.nextLine());
+                            }
+                            case "sensor" -> {
+                                System.out.print("Ingrese el identificador (humedad, temperatura, entre otros): ");
+                                dispositivo.setIdentificador(sc.nextLine());
+                            }
+                            case "alarma" -> {
+                                System.out.print("Ingrese el identificador (movimiento, apertura, entre otros): ");
+                                dispositivo.setIdentificador(sc.nextLine());
+                            }
+                            default -> {
+                                System.out.println("Tipo de dispositivo incorrecto");
+                                continue;
+                            }
+                        }
+                        System.out.print("Ingrese el Estado del dispositivo (ON, OFF): ");
+                        dispositivo.setEstado(sc.nextLine());
+                        if ("ON".equals(dispositivo.getEstado())){
+                            contadorON++;
+                        }
+                    }
+                    System.out.println("La cantidad de dispositivos Encendidos es de "+contadorON);
+                }
+                case 4 ->{
+                    System.out.print("Ingrese la altura desde la que lanza el objeto: ");
+                    clsCuerpoCaidaLibre cuerpo = new clsCuerpoCaidaLibre(sc.nextDouble());
+                    cuerpo.DistanciaRecorridaXsegundo();
+                }
+                case 5 ->{
+                    clsDistanciaRed distancia = new clsDistanciaRed();
+                    System.out.print("Ingrese las coordenadas en x del celular 1: ");
+                    distancia.setCoord_x_cel1(sc.nextDouble());
+                    System.out.print("Ingrese las coordenadas en y del celular 1: ");
+                    distancia.setCoord_y_cel1(sc.nextDouble());
+                    System.out.print("Ingrese las coordenadas en x de la antena 1: ");
+                    distancia.setCoord_x_ant1(sc.nextDouble());
+                    System.out.print("Ingrese las coordenadas en y de la antena 1: ");
+                    distancia.setCoord_y_ant1(sc.nextDouble());
+                    System.out.print("Ingrese las coordenadas en x de la Central Holi: ");
+                    distancia.setCoord_x_Central(sc.nextDouble());
+                    System.out.print("Ingrese las coordenadas en y de la Central Holi: ");
+                    distancia.setCoord_y_Central(sc.nextDouble());
+                    System.out.print("Ingrese las coordenadas en x de la antena 2: ");
+                    distancia.setCoord_x_ant2(sc.nextDouble());
+                    System.out.print("Ingrese las coordenadas en y de la antena 2: ");
+                    distancia.setCoord_y_ant2(sc.nextDouble());
+                    System.out.print("Ingrese las coordenadas en x del celular 2: ");
+                    distancia.setCoord_x_cel2(sc.nextDouble());
+                    System.out.print("Ingrese las coordenadas en y del celular 2: ");
+                    distancia.setCoord_y_cel2(sc.nextDouble());
+                    
+                    System.out.println("La distancia total fue de: " + distancia.calcular_distancia_total());
+                }
+                case 6 ->{
+                    runSowfware = false;
+                }
+            }
         }
-        if ("ON".equals(dispositivo2.getEstado())){
-            contadorON++;
-        }
-        if ("ON".equals(dispositivo3.getEstado())){
-            contadorON++;
-        }
-        if ("ON".equals(dispositivo4.getEstado())){
-            contadorON++;
-        }
-        if ("ON".equals(dispositivo5.getEstado())){
-            contadorON++;
-        }
-        System.out.println("La cantidad de dispositivos Encendidos son "+contadorON);
         
-        
-        clsDistanciaRed distancia1 = new clsDistanciaRed(2.0,2.0,4.0,4.0,6.0,6.0,7.0,7.0,8.0,8.0);  
-        clsDistanciaRed distancia2 = new clsDistanciaRed(1,1,3,3,5,5,7,7,9,9);  
-        
-        System.out.println(distancia1.calcular_distancia_total());
-        System.out.println(distancia2.calcular_distancia_total());
-    
-        
-        clsCuerpoCaidaLibre cuerpo1 = new clsCuerpoCaidaLibre(10);
-        clsCuerpoCaidaLibre cuerpo2 = new clsCuerpoCaidaLibre(50);
-        clsCuerpoCaidaLibre cuerpo3 = new clsCuerpoCaidaLibre(100);
-        
-        cuerpo1.DistanciaRecorridaXsegundo();
-        cuerpo2.DistanciaRecorridaXsegundo();
-        cuerpo3.DistanciaRecorridaXsegundo();
     }
     
 }

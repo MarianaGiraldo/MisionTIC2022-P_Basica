@@ -76,6 +76,7 @@ public class clsAutosRadar {
     
     public void MultarVel(){
         double velocidad = CalcularVel();
+        System.out.println("La velocidad fue de: "+ velocidad + "km/h");
         if(1<= velocidad && velocidad<= 20){
             System.out.println("Llamado de atención por baja velocidad para el auto de placa "+ this.placa);
         }
