@@ -2,14 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/NetBeansProjects/PetManager/src/Classes/clsCat.java</file>
-            <file>file:/C:/NetBeansProjects/PetManager/src/Classes/clsDog.java</file>
-            <file>file:/C:/NetBeansProjects/PetManager/src/petmanager/Polymorphism.java</file>
-            <file>file:/C:/NetBeansProjects/PetManager/src/Classes/clsPet.java</file>
-            <file>file:/C:/NetBeansProjects/PetManager/src/Classes/clsVeterinary.java</file>
-            <file>file:/C:/NetBeansProjects/PetManager/src/Classes/clsDoctor.java</file>
-            <file>file:/C:/NetBeansProjects/PetManager/src/petmanager/PetManager.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

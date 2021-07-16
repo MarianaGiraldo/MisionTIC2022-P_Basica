@@ -88,7 +88,7 @@ public class Company {
         this.customersList = customersList;
     }
     
-    public List createEmployee(Company company, Position cargo, List empleadosList){
+    public Employee createEmployee(Company company, Position cargo){
         Scanner sc = new Scanner(System.in);
         System.out.print("Ingrese el nombre del empleado: ");
         String nombre = sc.nextLine();
@@ -102,9 +102,8 @@ public class Company {
         int salario = sc.nextInt();
         sc.nextLine();
         Employee empleado = new Employee(salario, cargo, company, nombre, apellido, id, email);
-        empleadosList.add(empleado);
         addEmployee(empleado);
-        return empleadosList;
+        return empleado;
     }
     
     public AdminEmployee createAdminEmployee(Company company, Position cargo){

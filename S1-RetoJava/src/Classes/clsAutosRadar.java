@@ -93,13 +93,13 @@ public class clsAutosRadar {
     public void MultarAlcohol(){
         double velocidad = CalcularVel();
         if (velocidad >=81){
-            if (this.gr_alcohol >= 20 && this.gr_alcohol <=39 ){
+            if (this.gr_alcohol >= 20 && this.gr_alcohol <40 ){
                 System.out.println("Alcoholemia para el auto de placa "+ this.placa + ": además de las sanciones previstas en la presente ley, se decretará la suspensión de la licencia de conducción entre seis (6) y doce (12) meses.");
             }
-            if (this.gr_alcohol >= 40 && this.gr_alcohol <=99 ){
+            if (this.gr_alcohol >= 40 && this.gr_alcohol <100 ){
                 System.out.println("Alcoholemia para el auto de placa "+ this.placa + ": Primer grado de embriaguez. Adicionalmente a la sanción multa, se decretará la suspensión de la Licencia de Conducción entre uno (1) y tres (3) años.");
             }
-            if (this.gr_alcohol >= 100 && this.gr_alcohol <=149 ){
+            if (this.gr_alcohol >= 100 && this.gr_alcohol <150 ){
                 System.out.println("Alcoholemia para el auto de placa "+ this.placa + ": Segundo grado de embriaguez. Adicionalmente a la sanción multa, se decretará la suspensión de la Licencia de Conducción entre tres (3) y cinco (5) años, y la obligación de realizar curso de sensibilización, conocimientos y consecuencias de la alcoholemia y drogadicción en centros de rehabilitación debidamente autorizados, por un mínimo de cuarenta (40) horas.");
             }
             if (this.gr_alcohol >= 150){

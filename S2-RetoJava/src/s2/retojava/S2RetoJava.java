@@ -42,8 +42,8 @@ public class S2RetoJava {
                 company = new Company(companyName, nit, address, empleados);
                 
             } else {
-                System.out.println("------Ingresando datos para la empresa "+ companyName + "------");
-                System.out.println("¿Desea ingresar datos para otra empresa? (True or False)");
+                System.out.println("\n------Ingresando datos para la empresa "+ companyName + "------");
+                System.out.print("¿Desea ingresar datos para otra empresa? (True or False): ");
                 boolean optionNew = sc.nextBoolean();
                     sc.nextLine();
                 if (optionNew == true){
@@ -58,23 +58,10 @@ public class S2RetoJava {
                 int numEmployees = sc.nextInt();
                 sc.nextLine();
                 if (allSubPositions.isEmpty()){
-                        System.out.print("Ingrese el cargo del empleado: ");
-                        String cargo1 = sc.nextLine();
-                        System.out.print("Ingrese el nivel jerárquico del cargo: ");
-                        String hLevel = sc.nextLine();
-                        Position cargo = new Position(cargo1,hLevel);
-                        allSubPositions.add(cargo);
+                        Position cargo = company.createPosition(allSubPositions);
                     }
                 for(int i =1; i<= numEmployees; i++){
                     System.out.println("---Empleado "+i +" ---");
-                    if (allSubPositions.isEmpty()){
-                        System.out.print("Ingrese el cargo del empleado: ");
-                        String cargo1 = sc.nextLine();
-                        System.out.print("Ingrese el nivel jerárquico del cargo: ");
-                        String hLevel = sc.nextLine();
-                        Position cargo = new Position(cargo1,hLevel);
-                        allSubPositions.add(cargo);
-                    }else{
                         System.out.println("Estos son los cargos añadidos: ");
                         int j = 0;
                         for(j = 0; j< allSubPositions.size(); j++){
@@ -85,15 +72,15 @@ public class S2RetoJava {
                         sc.nextLine();
                         if (newPosition){
                             Position cargo = company.createPosition(allSubPositions);
-                            empleados = company.createEmployee(company, cargo, empleados);
+                            Employee empleado = company.createEmployee(company, cargo);
                             continue;
                         }
-                        System.out.println("Estos son los cargos disponibles: ");
+                        System.out.println("\nEstos son los cargos disponibles: ");
                         
                         for(j = 0; j< allSubPositions.size(); j++){
                             System.out.println((j+1)+ ".Cargo: " + allSubPositions.get(j).getPositionName());
                         }
-                        System.out.print("Digite el número del cargo del empleado: ");
+                        System.out.print("\nDigite el número del cargo del empleado: ");
                         int optionPosition = sc.nextInt();
                         sc.nextLine();
                         Position cargo = allSubPositions.get(0); //Inicializar cargo
@@ -103,8 +90,8 @@ public class S2RetoJava {
                             if (optionPosition==option)
                                 cargo= allSubPositions.get(j);
                         }
-                        empleados = company.createEmployee(company, cargo, empleados);
-                    }
+                        Employee empleado = company.createEmployee(company, cargo);
+                    
                 }
             }
             
@@ -114,29 +101,32 @@ public class S2RetoJava {
             sc.nextLine();
             switch(option){
                 case 1 -> {
+                    System.out.println("");
                     AdminEmployee admin = company.createAdminEmployee(company, administrativo);
                     int e =1;
-                    System.out.println("Lista de todos los empleados");
+                    System.out.println("\nLista de todos los empleados");
                     for(Employee employee : empleados){
                         System.out.println(e+". Empleado: "+ employee.getAllName());
                         e++;
                     }
-                    System.out.print("¿Cuántos empleados desea agregar como subordinados al administrador? ");
+                    System.out.print("\n¿Cuántos empleados desea agregar como subordinados al administrador? ");
                     int numSubEmployees = sc.nextInt();
                     sc.nextLine();
-                    if (numSubEmployees<empleados.size()){
+                    if (numSubEmployees>empleados.size()){
                         System.out.println("El número es mayor a los empleados disponibles"); 
                         continue;
                     }
                     for(int j=0; j < numSubEmployees; j++){
-                        System.out.print("Digite el numero del empleado a añadir: ");
+                        System.out.print("\nDigite el numero del empleado a añadir: ");
                         int employee = sc.nextInt();
                         Employee subemployee = empleados.get(employee-1);
                         admin.addSubEmployee(subemployee.getAllName());
+                        System.out.println("-Empleado añadido-");
                     }
+                    System.out.println("\n--Empleado Administrador creado--\n");
                 }
                 case 2 ->{
-                    System.out.println("Estos son los cargos añadidos: ");
+                    System.out.println("\nEstos son los cargos añadidos: ");
                         int j = 0;
                         for(j = 0; j< allSubPositions.size(); j++){
                             System.out.println((j+1)+ ".Cargo: " + allSubPositions.get(j).getPositionName());
@@ -146,15 +136,15 @@ public class S2RetoJava {
                         sc.nextLine();
                         if (newPosition){
                             Position cargo = company.createPosition(allSubPositions);
-                            empleados = company.createEmployee(company, cargo, empleados);
+                            Employee empleado = company.createEmployee(company, cargo);
                             continue;
                         }
-                        System.out.println("Estos son los cargos disponibles: ");
+                        System.out.println("\nEstos son los cargos disponibles: ");
                         
                         for(j = 0; j< allSubPositions.size(); j++){
                             System.out.println((j+1)+ ".Cargo: " + allSubPositions.get(j).getPositionName());
                         }
-                        System.out.print("Digite el número del cargo del empleado: ");
+                        System.out.print("\nDigite el número del cargo del empleado: ");
                         int optionPosition = sc.nextInt();
                         sc.nextLine();
                         Position cargo = allSubPositions.get(0); //Inicializar cargo
@@ -164,26 +154,31 @@ public class S2RetoJava {
                             if (optionPosition==option)
                                 cargo= allSubPositions.get(j);
                         }
-                        empleados = company.createEmployee(company, cargo, empleados);
+                        Employee empleado = company.createEmployee(company, cargo);
+                        System.out.println("--Empleado creado--\n");
                     }
                 case 3 ->{
                     int e =1;
-                    System.out.println("Lista de todos los empleados");
+                    System.out.println("\nLista de todos los empleados");
                     for(Employee employee : company.getEmployeesList()){
                         System.out.println(e+". Empleado: "+ employee.getAllName());
                         e++;
                     }
+                    System.out.println("");
                 }
                 case 4 ->{
+                    System.out.println("");
                     company.createCustomer(company.getCustomersList());
+                    System.out.println("");
                 }
                 case 5 ->{
                     int e =1;
-                    System.out.println("Lista de todos los cliente");
+                    System.out.println("\nLista de todos los cliente");
                     for(Customer customer : company.getCustomersList()){
                         System.out.println(e+". Cliente: "+ customer.getAllName());
                         e++;
                     }
+                    System.out.println("");
                 }
                 case 6 ->{runSowfware = false;}
             }
