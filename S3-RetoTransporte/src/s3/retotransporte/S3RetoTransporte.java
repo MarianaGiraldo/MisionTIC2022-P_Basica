@@ -5,7 +5,7 @@
  */
 package s3.retotransporte;
 
-import Classes.*;
+import View.TiqueteForm;
 
 /**
  *
@@ -17,11 +17,8 @@ public class S3RetoTransporte {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        TiqueteImprimir tiquete = new TiqueteImprimir();
-        PasajeroAdulto adulto = new PasajeroAdulto();
-        
-        tiquete.addPasajeroAdulto(adulto);
-        tiquete.imprimirTiquete();
+        TiqueteForm tiquete = new TiqueteForm();
+        tiquete.setVisible(true);
     }
     
 }
