@@ -41,7 +41,7 @@ CREATE TABLE tb_user (
   document_number varchar(15) NOT NULL,
   document_type_id int(11) NOT NULL,
   timestamp TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  updated_at datetime NOT NULL,
+  updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (document_type_id) REFERENCES tb_document_type(id_dt)
 );
 -- --------------------------------------------------------
@@ -67,7 +67,7 @@ CREATE TABLE tb_wallet (
   status_id int(11) NOT NULL,
   amount float NOT NULL,
   timestamp TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  updated_at datetime NOT NULL,
+  updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   user_id int(11) NOT NULL,
   FOREIGN KEY (status_id) REFERENCES tb_wallet_status(id_ws),
   FOREIGN KEY (user_id) REFERENCES tb_user(id_u)
@@ -82,7 +82,7 @@ CREATE TABLE tb_pocket (
   id_p int(11) NOT NULL AUTO_INCREMENT primary key,
   namep varchar(50) NOT NULL,
   timestamp TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  updated_at datetime NOT NULL,
+  updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;,
   wallet_id int(11) DEFAULT NULL,
   FOREIGN KEY (wallet_id) REFERENCES tb_wallet(id_w)
 );
