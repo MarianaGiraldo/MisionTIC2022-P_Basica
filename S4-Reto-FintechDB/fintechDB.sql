@@ -8,7 +8,6 @@ use fintechDB;
 
 CREATE TABLE tb_document_type (
   id_dt int(11) NOT NULL AUTO_INCREMENT primary key,
-  code int(11) NOT NULL,
   namedt varchar(50) NOT NULL
 );
 
@@ -20,7 +19,6 @@ CREATE TABLE tb_document_type (
 
 CREATE TABLE tb_transaction_type (
   id_tt int(11) NOT NULL AUTO_INCREMENT primary key,
-  code int(11) NOT NULL,
   name varchar(50) NOT NULL
 );
 -- --------------------------------------------------------
@@ -31,7 +29,7 @@ CREATE TABLE tb_transaction_type (
 
 CREATE TABLE tb_user (
   id_u int(11) NOT NULL AUTO_INCREMENT primary key,
-  frist_name varchar(50) NOT NULL,
+  first_name varchar(50) NOT NULL,
   last_name varchar(50) NOT NULL,
   password varchar(30) NOT NULL,
   phone varchar(15) NOT NULL,
@@ -52,7 +50,6 @@ CREATE TABLE tb_user (
 
 CREATE TABLE tb_wallet_status (
   id_ws int(11) NOT NULL AUTO_INCREMENT primary key,
-  code int(11) NOT NULL,
   namews varchar(50) NOT NULL
 ) ;
 
