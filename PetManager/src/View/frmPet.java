@@ -57,8 +57,12 @@ public class frmPet extends javax.swing.JFrame {
         cbBreedCat = new javax.swing.JComboBox<>();
         CreateCat = new javax.swing.JButton();
         SearchCat = new javax.swing.JButton();
-        UpdateCat = new javax.swing.JButton();
+        EditCat = new javax.swing.JButton();
         DeleteCat = new javax.swing.JButton();
+        txtcatId = new javax.swing.JTextField();
+        catIdLabel = new javax.swing.JLabel();
+        txtpetIdCat = new javax.swing.JTextField();
+        petIdLabelCat = new javax.swing.JLabel();
         PanelDogManager = new javax.swing.JPanel();
         txtBornYearDog = new javax.swing.JTextField();
         labelBreedDog = new javax.swing.JLabel();
@@ -67,7 +71,7 @@ public class frmPet extends javax.swing.JFrame {
         txtColorDog = new javax.swing.JTextField();
         CreateDog = new javax.swing.JButton();
         SearchDog = new javax.swing.JButton();
-        UpdateDog = new javax.swing.JButton();
+        EditDog = new javax.swing.JButton();
         DeleteDog = new javax.swing.JButton();
         LabelCodeDog = new javax.swing.JLabel();
         txtCodeDog = new javax.swing.JTextField();
@@ -77,6 +81,10 @@ public class frmPet extends javax.swing.JFrame {
         labelBornYearDog = new javax.swing.JLabel();
         cbHealthStatusDog = new javax.swing.JComboBox<>();
         cbPedigreeDog = new javax.swing.JCheckBox();
+        txtpetIdDog = new javax.swing.JTextField();
+        petIdLabelDog = new javax.swing.JLabel();
+        txtdogId = new javax.swing.JTextField();
+        dogIdLabel = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         PetList = new javax.swing.JList<>();
@@ -139,10 +147,10 @@ public class frmPet extends javax.swing.JFrame {
             }
         });
 
-        UpdateCat.setText("Update");
-        UpdateCat.addActionListener(new java.awt.event.ActionListener() {
+        EditCat.setText("Edit");
+        EditCat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UpdateCatActionPerformed(evt);
+                EditCatActionPerformed(evt);
             }
         });
 
@@ -153,56 +161,89 @@ public class frmPet extends javax.swing.JFrame {
             }
         });
 
+        txtcatId.setEditable(false);
+        txtcatId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcatIdActionPerformed(evt);
+            }
+        });
+
+        catIdLabel.setText("catId:");
+
+        txtpetIdCat.setEditable(false);
+        txtpetIdCat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtpetIdCatActionPerformed(evt);
+            }
+        });
+
+        petIdLabelCat.setText("petId:");
+
         javax.swing.GroupLayout PanelCatManagerLayout = new javax.swing.GroupLayout(PanelCatManager);
         PanelCatManager.setLayout(PanelCatManagerLayout);
         PanelCatManagerLayout.setHorizontalGroup(
             PanelCatManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelCatManagerLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(PanelCatManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(PanelCatManagerLayout.createSequentialGroup()
-                        .addComponent(CreateCat)
-                        .addGap(40, 40, 40)
-                        .addComponent(SearchCat)
-                        .addGap(16, 16, 16))
-                    .addGroup(PanelCatManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(PanelCatManagerLayout.createSequentialGroup()
-                            .addComponent(LabelCodeCat)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                            .addComponent(txtCodeCat, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(PanelCatManagerLayout.createSequentialGroup()
-                            .addGroup(PanelCatManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(labelBornYearCat)
-                                .addComponent(labelHealthStatusCat))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(PanelCatManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtBornYearCat, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                                .addComponent(cbHealthStatusCat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addGap(29, 29, 29)
-                .addGroup(PanelCatManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(PanelCatManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(PanelCatManagerLayout.createSequentialGroup()
-                            .addGap(2, 2, 2)
-                            .addComponent(labelBreedCat))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelCatManagerLayout.createSequentialGroup()
-                            .addGroup(PanelCatManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(labelColorCat, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(labelNameCat, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addGap(15, 15, 15)))
-                    .addGroup(PanelCatManagerLayout.createSequentialGroup()
-                        .addComponent(UpdateCat)
-                        .addGap(10, 10, 10)))
                 .addGroup(PanelCatManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelCatManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(txtColorCat, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtNameCat, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelCatManagerLayout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(petIdLabelCat)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtpetIdCat, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(110, 110, 110))
                     .addGroup(PanelCatManagerLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(cbBreedCat, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addGroup(PanelCatManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(PanelCatManagerLayout.createSequentialGroup()
+                                .addComponent(CreateCat)
+                                .addGap(40, 40, 40)
+                                .addComponent(SearchCat)
+                                .addGap(16, 16, 16))
+                            .addGroup(PanelCatManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(PanelCatManagerLayout.createSequentialGroup()
+                                    .addComponent(LabelCodeCat)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                                    .addComponent(txtCodeCat, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(PanelCatManagerLayout.createSequentialGroup()
+                                    .addGroup(PanelCatManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(labelBornYearCat)
+                                        .addComponent(labelHealthStatusCat))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(PanelCatManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtBornYearCat, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                                        .addComponent(cbHealthStatusCat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addGap(29, 29, 29)))
+                .addGroup(PanelCatManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelCatManagerLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(DeleteCat)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                        .addGroup(PanelCatManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(PanelCatManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(PanelCatManagerLayout.createSequentialGroup()
+                                    .addGap(2, 2, 2)
+                                    .addComponent(labelBreedCat))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelCatManagerLayout.createSequentialGroup()
+                                    .addGroup(PanelCatManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(labelColorCat, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(labelNameCat, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addGap(15, 15, 15)))
+                            .addGroup(PanelCatManagerLayout.createSequentialGroup()
+                                .addComponent(EditCat)
+                                .addGap(10, 10, 10)))
+                        .addGroup(PanelCatManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelCatManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(txtColorCat, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtNameCat, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PanelCatManagerLayout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(cbBreedCat, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PanelCatManagerLayout.createSequentialGroup()
+                                .addGap(37, 37, 37)
+                                .addComponent(DeleteCat))))
+                    .addGroup(PanelCatManagerLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(catIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtcatId, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         PanelCatManagerLayout.setVerticalGroup(
             PanelCatManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,11 +271,19 @@ public class frmPet extends javax.swing.JFrame {
                             .addComponent(labelHealthStatusCat)
                             .addComponent(cbHealthStatusCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelBreedCat))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PanelCatManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelCatManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtpetIdCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(petIdLabelCat))
+                    .addGroup(PanelCatManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtcatId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(catIdLabel)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(PanelCatManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SearchCat)
                     .addComponent(CreateCat)
-                    .addComponent(UpdateCat)
+                    .addComponent(EditCat)
                     .addComponent(DeleteCat))
                 .addGap(30, 30, 30))
         );
@@ -273,10 +322,10 @@ public class frmPet extends javax.swing.JFrame {
             }
         });
 
-        UpdateDog.setText("Update");
-        UpdateDog.addActionListener(new java.awt.event.ActionListener() {
+        EditDog.setText("Edit");
+        EditDog.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UpdateDogActionPerformed(evt);
+                EditDogActionPerformed(evt);
             }
         });
 
@@ -315,6 +364,24 @@ public class frmPet extends javax.swing.JFrame {
             }
         });
 
+        txtpetIdDog.setEditable(false);
+        txtpetIdDog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtpetIdDogActionPerformed(evt);
+            }
+        });
+
+        petIdLabelDog.setText("petId:");
+
+        txtdogId.setEditable(false);
+        txtdogId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtdogIdActionPerformed(evt);
+            }
+        });
+
+        dogIdLabel.setText("dogId:");
+
         javax.swing.GroupLayout PanelDogManagerLayout = new javax.swing.GroupLayout(PanelDogManager);
         PanelDogManager.setLayout(PanelDogManagerLayout);
         PanelDogManagerLayout.setHorizontalGroup(
@@ -344,7 +411,7 @@ public class frmPet extends javax.swing.JFrame {
                             .addComponent(labelNameDog, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(15, 15, 15))
                     .addGroup(PanelDogManagerLayout.createSequentialGroup()
-                        .addComponent(UpdateDog)
+                        .addComponent(EditDog)
                         .addGap(10, 10, 10)))
                 .addGroup(PanelDogManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelDogManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -353,16 +420,26 @@ public class frmPet extends javax.swing.JFrame {
                     .addGroup(PanelDogManagerLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(DeleteDog)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
             .addGroup(PanelDogManagerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelHealthStatusDog)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbHealthStatusDog, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(labelBreedDog)
-                .addGap(5, 5, 5)
-                .addComponent(cbBreedDog, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(PanelDogManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelHealthStatusDog)
+                    .addComponent(petIdLabelDog, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PanelDogManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbHealthStatusDog, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtpetIdDog, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(PanelDogManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelDogManagerLayout.createSequentialGroup()
+                        .addComponent(labelBreedDog)
+                        .addGap(5, 5, 5)
+                        .addComponent(cbBreedDog, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelDogManagerLayout.createSequentialGroup()
+                        .addComponent(dogIdLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtdogId, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cbPedigreeDog)
                 .addGap(16, 16, 16))
@@ -395,11 +472,18 @@ public class frmPet extends javax.swing.JFrame {
                         .addComponent(labelHealthStatusDog)
                         .addComponent(cbHealthStatusDog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(labelBreedDog))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(PanelDogManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtdogId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dogIdLabel)
+                    .addGroup(PanelDogManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtpetIdDog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(petIdLabelDog)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(PanelDogManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SearchDog)
                     .addComponent(CreateDog)
-                    .addComponent(UpdateDog)
+                    .addComponent(EditDog)
                     .addComponent(DeleteDog))
                 .addGap(30, 30, 30))
         );
@@ -506,8 +590,9 @@ public class frmPet extends javax.swing.JFrame {
             if(code.equals("") || name.equals("") || color.equals("")){
                 JOptionPane.showMessageDialog(this, "Fill all fields");
             }else{
-                clsDog dog = new clsDog(breed, pedigree, code, name, bornYear, color, healthStatus);
-                dogObjectList.add(dog);
+                clsDog dog = new clsDog(0, breed, pedigree, 0, code, name, bornYear, color, healthStatus);
+                //dogObjectList.add(dog);
+                ctlPet.CreatePet(dog);
                 this.FillJlist();
                 this.clearDogFields();
                 JOptionPane.showMessageDialog(this, "The record has been saved");
@@ -558,8 +643,9 @@ public class frmPet extends javax.swing.JFrame {
             if(code.equals("") || name.equals("") || color.equals("")){
                 JOptionPane.showMessageDialog(this, "Fill all fields");
             }else{
-                clsCat cat = new clsCat(breed, code, name, bornYear, color, healthStatus);
-                catObjectList.add(cat);
+                clsCat cat = new clsCat(0, breed, 0, code, name, bornYear, color, healthStatus);
+                //catObjectList.add(cat);
+                ctlPet.CreatePet(cat);
                 this.FillJlist();
                 this.clearCatFields();
                 JOptionPane.showMessageDialog(this, "The record has been saved");
@@ -590,28 +676,32 @@ public class frmPet extends javax.swing.JFrame {
     private void SearchDogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchDogActionPerformed
         String code = txtCodeDog.getText();
         
-        clsDog dog = (clsDog)ctlPet.SearchPet(code, "Perro");
+        clsDog dog = (clsDog)ctlPet.SearchPet(code, "Dog");
         
         if(dog == null){
             JOptionPane.showMessageDialog(this, "Code not found");
         }else{
+            txtpetIdDog.setText(dog.getPetId()+"");
+            txtdogId.setText(dog.getDogId()+"");
             txtNameDog.setText(dog.getName());
-                txtColorDog.setText(dog.getColor());
-                txtBornYearDog.setText(dog.getBorn_year() + "");
-                cbHealthStatusDog.setSelectedItem(dog.getHealth_Status());
-                cbBreedDog.setSelectedItem(dog.getBreed());
-                cbPedigreeDog.setSelected(dog.isPedigree());
+            txtColorDog.setText(dog.getColor());
+            txtBornYearDog.setText(dog.getBorn_year() + "");
+            cbHealthStatusDog.setSelectedItem(dog.getHealth_Status());
+            cbBreedDog.setSelectedItem(dog.getBreed());
+            cbPedigreeDog.setSelected(dog.isPedigree());
                 
         }
     }//GEN-LAST:event_SearchDogActionPerformed
 
     private void SearchCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchCatActionPerformed
         String code = txtCodeCat.getText();
-        clsCat cat = (clsCat)ctlPet.SearchPet(code, "Gato");
+        clsCat cat = (clsCat)ctlPet.SearchPet(code, "Cat");
         
         if(cat == null){
             JOptionPane.showMessageDialog(this, "Code not found");
         }else{
+            txtpetIdCat.setText(cat.getPetId()+"");
+            txtdogId.setText(cat.getCatId()+"");
             txtNameCat.setText(cat.getName());
             txtColorCat.setText(cat.getColor());
             txtBornYearCat.setText(cat.getBorn_year() + "");
@@ -621,63 +711,71 @@ public class frmPet extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_SearchCatActionPerformed
 
-    private void UpdateDogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateDogActionPerformed
+    private void EditDogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditDogActionPerformed
         String code = txtCodeDog.getText();
-        boolean found = false;
-        for (clsDog dog: dogObjectList) {
-            if (dog.getCode().equals(code)){
-                String name = txtNameDog.getText();
-                String color = txtColorDog.getText();
-                int bornYear = Integer.parseInt(txtBornYearDog.getText());
-                String breed = cbBreedDog.getSelectedItem().toString();
-                String healthStatus = cbHealthStatusDog.getSelectedItem().toString();
-                boolean pedigree = cbPedigreeDog.isSelected();
-                dog.setName(name);
-                dog.setColor(color);
-                dog.setBorn_year(bornYear);
-                dog.setBreed(breed);
-                dog.setPedigree(pedigree);
-                dog.setHealth_Status(healthStatus);
-                JOptionPane.showMessageDialog(this, "Record updated successfully");
-                this.clearDogFields();
-                this.FillJlist();
-                found = true;
-                break;
+        String name = txtNameDog.getText();
+        String color = txtColorDog.getText();
+        int bornYear = Integer.parseInt(txtBornYearDog.getText());
+        String breed = cbBreedDog.getSelectedItem().toString();
+        String healthStatus = cbHealthStatusDog.getSelectedItem().toString();
+        boolean pedigree = cbPedigreeDog.isSelected();
+        try {
+            int petId = Integer.parseInt(txtpetIdDog.getText());
+            int dogId = Integer.parseInt(txtdogId.getText());
+            clsDog dog = new clsDog(dogId, breed, pedigree, petId, code, name, bornYear, color, healthStatus);
+            boolean response = ctlPet.EditPet(dog);
+            if(response){
+                JOptionPane.showMessageDialog(this, "Record updated");
+            }else{
+                JOptionPane.showMessageDialog(this, "Error updating the record");
             }
+            
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "You have to search the record to update it.");
         }
-        if(!found){
-            JOptionPane.showMessageDialog(this, "Code not found");
-        }
+       
         
-    }//GEN-LAST:event_UpdateDogActionPerformed
+    }//GEN-LAST:event_EditDogActionPerformed
 
-    private void UpdateCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateCatActionPerformed
+    private void EditCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditCatActionPerformed
         String code = txtCodeCat.getText();
-        boolean found = false;
-        for (clsCat cat: catObjectList) {
-            if (cat.getCode().equals(code)){
-                String name = txtNameCat.getText();
-                String color = txtColorCat.getText();
-                int bornYear = Integer.parseInt(txtBornYearCat.getText());
-                String breed = cbBreedCat.getSelectedItem().toString();
-                String healthStatus = cbHealthStatusCat.getSelectedItem().toString();
-                cat.setName(name);
-                cat.setColor(color);
-                cat.setBorn_year(bornYear);
-                cat.setBreed(breed);
-                cat.setHealth_Status(healthStatus);
-                JOptionPane.showMessageDialog(this, "Record updated successfully");
-                this.clearCatFields();
-                this.FillJlist();
-                found = true;
-                break;
+        String name = txtNameCat.getText();
+        String color = txtColorCat.getText();
+        int bornYear = Integer.parseInt(txtBornYearCat.getText());
+        String breed = cbBreedCat.getSelectedItem().toString();
+        String healthStatus = cbHealthStatusCat.getSelectedItem().toString();
+        try {
+            int petId = Integer.parseInt(txtpetIdCat.getText());
+            int catId = Integer.parseInt(txtcatId.getText());
+            clsCat cat = new clsCat(catId, breed, petId, code, name, bornYear, color, healthStatus);
+            boolean response = ctlPet.EditPet(cat);
+            
+            if(response){
+                JOptionPane.showMessageDialog(this, "Record updated");
+            }else{
+                JOptionPane.showMessageDialog(this, "Error updating the record");
             }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "You have to search the record to update it.");
         }
-        if(!found){
-            JOptionPane.showMessageDialog(this, "Code not found");
-        }
-        
-    }//GEN-LAST:event_UpdateCatActionPerformed
+       
+    }//GEN-LAST:event_EditCatActionPerformed
+
+    private void txtpetIdDogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpetIdDogActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtpetIdDogActionPerformed
+
+    private void txtdogIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdogIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtdogIdActionPerformed
+
+    private void txtcatIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcatIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcatIdActionPerformed
+
+    private void txtpetIdCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpetIdCatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtpetIdCatActionPerformed
 
     private void FillJlist(){
         DefaultListModel model = new DefaultListModel();
@@ -755,6 +853,8 @@ public class frmPet extends javax.swing.JFrame {
     private javax.swing.JButton CreateDog;
     private javax.swing.JButton DeleteCat;
     private javax.swing.JButton DeleteDog;
+    private javax.swing.JButton EditCat;
+    private javax.swing.JButton EditDog;
     private javax.swing.JLabel LabelCodeCat;
     private javax.swing.JLabel LabelCodeDog;
     private javax.swing.JPanel PanelCatManager;
@@ -763,13 +863,13 @@ public class frmPet extends javax.swing.JFrame {
     private javax.swing.JTabbedPane PetManager;
     private javax.swing.JButton SearchCat;
     private javax.swing.JButton SearchDog;
-    private javax.swing.JButton UpdateCat;
-    private javax.swing.JButton UpdateDog;
+    private javax.swing.JLabel catIdLabel;
     private javax.swing.JComboBox<String> cbBreedCat;
     private javax.swing.JComboBox<String> cbBreedDog;
     private javax.swing.JComboBox<String> cbHealthStatusCat;
     private javax.swing.JComboBox<String> cbHealthStatusDog;
     private javax.swing.JCheckBox cbPedigreeDog;
+    private javax.swing.JLabel dogIdLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -783,6 +883,8 @@ public class frmPet extends javax.swing.JFrame {
     private javax.swing.JLabel labelHealthStatusDog;
     private javax.swing.JLabel labelNameCat;
     private javax.swing.JLabel labelNameDog;
+    private javax.swing.JLabel petIdLabelCat;
+    private javax.swing.JLabel petIdLabelDog;
     private javax.swing.JTextField txtBornYearCat;
     private javax.swing.JTextField txtBornYearDog;
     private javax.swing.JTextField txtCodeCat;
@@ -791,6 +893,10 @@ public class frmPet extends javax.swing.JFrame {
     private javax.swing.JTextField txtColorDog;
     private javax.swing.JTextField txtNameCat;
     private javax.swing.JTextField txtNameDog;
+    private javax.swing.JTextField txtcatId;
+    private javax.swing.JTextField txtdogId;
+    private javax.swing.JTextField txtpetIdCat;
+    private javax.swing.JTextField txtpetIdDog;
     // End of variables declaration//GEN-END:variables
 
     

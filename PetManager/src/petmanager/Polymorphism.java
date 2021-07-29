@@ -14,9 +14,8 @@ import Classes.*;
 public class Polymorphism {
     public static void main(String[] args) {
         //Instancias de las clases hijas
-        clsDog dog1 = new clsDog("Criollo", false ,"001", "Firulais", 2013, "Negro", "Sano" );
-        clsCat cat1 = new clsCat("Angora" ,"002", "Menino", 2018, "Blanco", "Enfermo" );
-        
+        clsDog dog1 = new clsDog(1,"Criollo", false,1 ,"001", "Firulais", 2013, "Negro", "Sano" );
+        clsCat cat1 = new clsCat(1,"Angora",2 ,"002", "Menino", 2018, "Blanco", "Enfermo" );
         //Instancias del doctor y vaterinaria
         clsDoctor doctor = new clsDoctor("Maria Torres", "12379");
         clsVeterinary veterinary = new clsVeterinary("Veterinaria UDC", "3054650245", "Cr5 este N 18-50", doctor);

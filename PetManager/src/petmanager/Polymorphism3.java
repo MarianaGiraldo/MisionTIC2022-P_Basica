@@ -13,8 +13,8 @@ import Classes.clsDog;
  */
 public class Polymorphism3 {
     public static void main(String[] args) {
-        clsDog dog = new clsDog("Criollo", false ,"001", "Firulais", 2013, "Negro", "Sano" );
-        
+        clsDog dog = new clsDog(1,"Criollo", false,1 ,"001", "Firulais", 2013, "Negro", "Sano" );
+    
         dog.WalkAround();
         dog.WalkAround(5);
         dog.WalkAround(true);

@@ -10,11 +10,13 @@ package Classes;
  * @author maria
  */
 public class clsDog extends clsPet {
+    private int dogId;
     private String breed;
     private boolean pedigree;
 
-    public clsDog(String breed, boolean pedigree, String code, String name, int born_year, String color, String health_Status) {
-        super(code, name, born_year, color, health_Status);
+    public clsDog(int dogId, String breed, boolean pedigree, int petId, String code, String name, int born_year, String color, String health_Status) {
+        super(petId, code, name, born_year, color, health_Status);
+        this.dogId = dogId;
         this.breed = breed;
         this.pedigree = pedigree;
     }
@@ -55,5 +57,18 @@ public class clsDog extends clsPet {
         this.pedigree = pedigree;
     }
     
+    
+    @Override
+    public String getAnimalType(){
+        return"Dog";
+    }
+
+    public int getDogId() {
+        return dogId;
+    }
+
+    public void setDogId(int dogId) {
+        this.dogId = dogId;
+    }
     
 }

@@ -7,14 +7,15 @@ package Controller;
 
 import Classes.*;
 import Model.*;
+import java.sql.SQLException;
 
 /**
  *
  * @author maria
  */
 public class ctlPet {
-    private modelDog modelDog;
-    private modelCat modelCat;
+    private final modelDog modelDog;
+    private final modelCat modelCat;
 
     public ctlPet() {
         this.modelDog = new modelDog();
@@ -26,28 +27,28 @@ public class ctlPet {
     public boolean CreatePet(clsPet pet){
        try{
            switch(pet.getAnimalType()){
-            case "Gato"->{
+            case "Cat"->{
                 this.modelCat.CreatePet((clsCat) pet);
             }
-            case "Perro"->{
+            case "Dog"->{
                 this.modelDog.CreatePet((clsDog) pet);
             }
         }
            return true;
-       }catch (Exception e) {
+       }catch (SQLException e) {
            return false;
        }
         
     }
     
     
-    public boolean UpdatePet(clsPet pet){
+    public boolean EditPet(clsPet pet){
        try{
            switch(pet.getAnimalType()){
-            case "Gato"->{
+            case "Cat"->{
                 this.modelCat.UpdatePet((clsCat)pet);
             }
-            case "Perro"->{
+            case "Dog"->{
                 this.modelDog.UpdatePet((clsDog) pet);
             }
         }
@@ -79,15 +80,16 @@ public class ctlPet {
         clsPet pet = null;
         try{
             switch(type){
-                case "Gato"->{
-                    this.modelCat.SearchPet(code);
+                case "Cat"->{
+                    pet = this.modelCat.SearchPet(code);
                 }
-                case "Perro"->{
-                    this.modelDog.SearchPet(code);
+                case "Dog"->{
+                    pet = this.modelDog.SearchPet(code);
                 }
             }
             return pet;
-       }catch (Exception e) {
+       }catch (SQLException e) {
+            System.err.println("Error:"+ e.getMessage());
            return null;
        }
         

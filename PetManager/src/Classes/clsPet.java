@@ -14,22 +14,22 @@ import Intefaces.*;
 public class clsPet implements IAnimal, IVertebrate {
     
     // atributos
-  private String code;
-  private String name; 
-  private int born_year;
-  private String color;
-  private String health_Status;
-  private clsVeterinary veterinary;
+    private int petId;
+    private String code;
+    private String name; 
+    private int born_year;
+    private String color;
+    private String health_Status;
+    private clsVeterinary veterinary;
 
-  // constructor
-  public clsPet(String code, String name, int born_year, String color, String health_Status){
-    this.code = code;
-    this.name = name;
-    this.born_year = born_year;
-    this.color = color;
-    this.health_Status = health_Status;
+    public clsPet(int petId, String code, String name, int born_year, String color, String health_Status) {
+        this.petId = petId;
+        this.code = code;
+        this.name = name;
+        this.born_year = born_year;
+        this.color = color;
+        this.health_Status = health_Status;
     }
-  
     
     /**
      * @return the code
@@ -125,12 +125,20 @@ public class clsPet implements IAnimal, IVertebrate {
 
     @Override
     public String getAnimalType() {
-        return "doméstico";
+        return "domestic";
     }
 
     @Override
     public int getNumberOfBones() {
         return 0;
+    }
+
+    public int getPetId() {
+        return petId;
+    }
+
+    public void setPetId(int petId) {
+        this.petId = petId;
     }
 
     

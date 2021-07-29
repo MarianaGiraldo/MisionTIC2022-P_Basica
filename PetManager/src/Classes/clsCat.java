@@ -10,13 +10,15 @@ package Classes;
  * @author maria
  */
 public class clsCat extends clsPet {
+    private int catId;
     private String breed;
 
-    public clsCat(String breed, String code, String name, int born_year, String color, String health_Status) {
-        super(code, name, born_year, color, health_Status);
+    public clsCat(int catId, String breed, int petId, String code, String name, int born_year, String color, String health_Status) {
+        super(petId, code, name, born_year, color, health_Status);
+        this.catId = catId;
         this.breed = breed;
     }
-    
+
     
     
     public void SelfCleaning(){
@@ -36,7 +38,7 @@ public class clsCat extends clsPet {
     
     @Override
     public String getAnimalType(){
-       return "Gato"; 
+       return "Cat"; 
     }
     
 
@@ -46,6 +48,14 @@ public class clsCat extends clsPet {
 
     public void setBreed(String breed) {
         this.breed = breed;
+    }
+
+    public int getCatId() {
+        return catId;
+    }
+
+    public void setCatId(int catId) {
+        this.catId = catId;
     }
     
     

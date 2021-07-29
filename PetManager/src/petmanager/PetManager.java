@@ -7,9 +7,9 @@ public class PetManager {
 
   public static void main(String[] args) {
     
-    clsDog dog1 = new clsDog("Criollo", false ,"001", "Firulais", 2013, "Negro", "Sano" );
-    clsCat cat1 = new clsCat("Angora" ,"002", "Menino", 2018, "Blanco", "Enfermo" );
-
+    clsDog dog1 = new clsDog(1,"Criollo", false,1 ,"001", "Firulais", 2013, "Negro", "Sano" );
+    clsCat cat1 = new clsCat(1,"Angora",2 ,"002", "Menino", 2018, "Blanco", "Enfermo" );
+        
     int current_year = Calendar.getInstance().get(Calendar.YEAR);
 
     int agePet1 = current_year - dog1.getBorn_year();

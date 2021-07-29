@@ -14,9 +14,9 @@ import Classes.*;
 public class Polymorphism2 {
     public static void main(String[] args) {
         //Instancias de las clases hijas
-        clsDog dog = new clsDog("Criollo", false ,"001", "Firulais", 2013, "Negro", "Sano" );
-        clsCat cat = new clsCat("Angora" ,"002", "Menino", 2018, "Blanco", "Enfermo" );
-        
+        clsDog dog = new clsDog(1,"Criollo", false,1 ,"001", "Firulais", 2013, "Negro", "Sano" );
+        clsCat cat = new clsCat(1,"Angora",2 ,"002", "Menino", 2018, "Blanco", "Enfermo" );
+     
         dog.Sound();
         cat.Sound();
         
