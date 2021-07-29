@@ -10,9 +10,9 @@ public abstract class Perseverance {
         db = new DB();
     }
     
-    public abstract Object get(Integer id);
-    public abstract Integer save();
-    public abstract Integer delete();
+    public abstract Object get(Integer id) throws Exception;
+    public abstract Integer save() throws Exception;
+    public abstract Integer delete() throws Exception;
     
     public Connection createConnection(){
         return this.db.createConnection();

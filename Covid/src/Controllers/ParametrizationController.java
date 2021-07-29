@@ -1,19 +1,27 @@
 
 package Controllers;
 
-import Models.*;
+import Models.Departamento;
 
-
-public class Controller {
+/**
+ *
+ * @author maria
+ */
+public class ParametrizationController {
     
-    public void saveStory(String title, String description, String story){
-        /*
-        Story story = new Story();
-        story.set...
-        story.set...
-        story.set...
-        story.save()
-        */
+    public void createDept(String name, Integer code) throws Exception{
+        Departamento dep = new Departamento();
+        dep.setCodigo(code);
+        dep.setNombre(name);
+        
+        try {
+            dep.save();
+        } catch (Exception e) {
+            System.out.println("Error: "+ e.getMessage());
+            throw new Exception("No se pudo crear el departamento. ");
+        }
+        
+        
     }
     
 }

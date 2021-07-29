@@ -56,6 +56,7 @@ public class Departamento extends Perseverance {
                 throw new Exception("No se encontro el registro.");
             
         }catch(Exception e){
+            System.err.println(e.getMessage());
             System.err.println("No se puedo obtener la información del objeto id=" + id + " en la tabla departamento.");
         }
         
@@ -72,7 +73,7 @@ public class Departamento extends Perseverance {
                 query = "INSERT INTO departamento (nombre, codigo) VALUES (?, ?)";
             else
                 query = "UPDATE departamento SET nombre=?, codigo=? WHERE id=? ";
-           
+            System.out.println("Query: "+query);
             PreparedStatement statement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, this.nombre);
             statement.setInt(2, this.codigo);
@@ -82,6 +83,7 @@ public class Departamento extends Perseverance {
             }
             
             int rows = statement.executeUpdate();
+            System.out.println("Statement Save Dept executed");
             
             if( rows > 0 ){
                 ResultSet generateKeys = statement.getGeneratedKeys();
@@ -90,8 +92,7 @@ public class Departamento extends Perseverance {
             }
                     
         } catch(Exception e){
-            e.printStackTrace();
-            System.err.println("Error al crear/editar el registro en la tabla departamento");
+            System.err.println("Error: "+e.getMessage());
         }
         
         return this.id;

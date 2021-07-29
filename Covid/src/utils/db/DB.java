@@ -7,6 +7,7 @@ package utils.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *
@@ -23,7 +24,7 @@ public class DB {
             Class.forName( driver );
             
             
-        } catch (Exception e) {
+        } catch (ClassNotFoundException e) {
             System.err.println(e);
             System.err.println("No se puede conectar a la base de datos");
         }
@@ -36,8 +37,8 @@ public class DB {
         try {
             conn = (Connection) DriverManager.getConnection(url, user, password);
 
-        } catch (Exception e) {
-            System.err.println("Error al obtener el conector");
+        } catch (SQLException e) {
+            System.err.println("Error al obtener el conector: "+e.getMessage());
         }
         
         
