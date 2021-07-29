@@ -18,10 +18,10 @@ public class PruebaJDBC {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       String driver = "com.mysql.jdbc.Driver";
+       String driver = "com.mysql.cj.jdbc.Driver";
        String user = "root";
        String password = "";
-       String url = "jdbc:mysql://localhost:3306/petmanagerdb";
+       String url = "jdbc:mysql://localhost:3306/covid";
        
        Connection connection;
         try {
