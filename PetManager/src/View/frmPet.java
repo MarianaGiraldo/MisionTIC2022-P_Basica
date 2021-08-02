@@ -21,8 +21,8 @@ import javax.swing.JOptionPane;
 public class frmPet extends javax.swing.JFrame {
     ctlPet ctlPet;
     
-    LinkedList<clsDog> dogObjectList = new LinkedList<>();
-    LinkedList<clsCat> catObjectList = new LinkedList<>();
+    LinkedList<clsPet> dogObjectList = new LinkedList<>();
+    LinkedList<clsPet> catObjectList = new LinkedList<>();
     
     /**
      * Creates new form frmPet
@@ -30,6 +30,10 @@ public class frmPet extends javax.swing.JFrame {
     public frmPet() {
         this.ctlPet = new ctlPet();
         initComponents();
+        this.dogObjectList = ctlPet.ListPet("Dog");
+        this.catObjectList = ctlPet.ListPet("Cat");
+        this.FillJlist();
+        
     }
 
     /**
@@ -473,12 +477,13 @@ public class frmPet extends javax.swing.JFrame {
                         .addComponent(cbHealthStatusDog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(labelBreedDog))
                 .addGap(18, 18, 18)
-                .addGroup(PanelDogManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtdogId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dogIdLabel)
+                .addGroup(PanelDogManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelDogManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtpetIdDog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(petIdLabelDog)))
+                        .addComponent(petIdLabelDog))
+                    .addGroup(PanelDogManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtdogId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dogIdLabel)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(PanelDogManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SearchDog)
@@ -560,7 +565,7 @@ public class frmPet extends javax.swing.JFrame {
     private void DeleteDogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteDogActionPerformed
         String code = txtCodeDog.getText();
         boolean found = false;
-        for (clsDog dog: dogObjectList) {
+        for (clsPet dog: dogObjectList) {
             if (dog.getCode().equals(code)){
                 this.dogObjectList.remove(dog);
                 this.clearDogFields();
@@ -615,8 +620,9 @@ public class frmPet extends javax.swing.JFrame {
     private void DeleteCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteCatActionPerformed
         String code = txtCodeCat.getText();
         boolean found = false;
-        for (clsCat cat: catObjectList) {
+        for (clsPet cat: catObjectList) {
             if (cat.getCode().equals(code)){
+                ctlPet.DeletePet(cat);
                 this.catObjectList.remove(cat);
                 this.clearDogFields();
                 this.FillJlist();
@@ -701,7 +707,7 @@ public class frmPet extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Code not found");
         }else{
             txtpetIdCat.setText(cat.getPetId()+"");
-            txtdogId.setText(cat.getCatId()+"");
+            txtcatId.setText(cat.getCatId()+"");
             txtNameCat.setText(cat.getName());
             txtColorCat.setText(cat.getColor());
             txtBornYearCat.setText(cat.getBorn_year() + "");
@@ -726,6 +732,7 @@ public class frmPet extends javax.swing.JFrame {
             boolean response = ctlPet.EditPet(dog);
             if(response){
                 JOptionPane.showMessageDialog(this, "Record updated");
+                this.clearDogFields();
             }else{
                 JOptionPane.showMessageDialog(this, "Error updating the record");
             }
@@ -752,6 +759,7 @@ public class frmPet extends javax.swing.JFrame {
             
             if(response){
                 JOptionPane.showMessageDialog(this, "Record updated");
+                this.clearCatFields();
             }else{
                 JOptionPane.showMessageDialog(this, "Error updating the record");
             }
@@ -780,13 +788,13 @@ public class frmPet extends javax.swing.JFrame {
     private void FillJlist(){
         DefaultListModel model = new DefaultListModel();
         int index = 0;
-        for (clsDog dog : dogObjectList) {       
-            String data = dog.getName()+ " - "+ dog.getBreed() + " - Dog";
+        for (clsPet dog : dogObjectList) {       
+            String data = dog.getName()+ " - "+ dog.getCode() + " - Dog";
             model.add(index, data);
             index++;
         }
-        for (clsCat cat : catObjectList) {       
-            String data = cat.getName()+ " - "+ cat.getBreed() + " - Cat";
+        for (clsPet cat : catObjectList) {       
+            String data = cat.getName()+ " - "+ cat.getCode() + " - Cat";
             model.add(index, data);
             index++;
         }
@@ -802,6 +810,8 @@ public class frmPet extends javax.swing.JFrame {
         cbBreedDog.setSelectedIndex(0);
         cbHealthStatusDog.setSelectedIndex(0);
         cbPedigreeDog.setSelected(false);
+        txtpetIdDog.setText("");
+        txtdogId.setText("");
     }
     
     private void clearCatFields() {
@@ -811,6 +821,8 @@ public class frmPet extends javax.swing.JFrame {
         txtBornYearCat.setText("");
         cbBreedCat.setSelectedIndex(0);
         cbHealthStatusCat.setSelectedIndex(0);
+        txtpetIdCat.setText("");
+        txtcatId.setText("");
     }
     
     /**

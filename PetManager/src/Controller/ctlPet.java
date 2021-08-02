@@ -8,6 +8,7 @@ package Controller;
 import Classes.*;
 import Model.*;
 import java.sql.SQLException;
+import java.util.LinkedList;
 
 /**
  *
@@ -46,10 +47,10 @@ public class ctlPet {
        try{
            switch(pet.getAnimalType()){
             case "Cat"->{
-                this.modelCat.UpdatePet((clsCat)pet);
+                this.modelCat.EditPet((clsCat)pet);
             }
             case "Dog"->{
-                this.modelDog.UpdatePet((clsDog) pet);
+                this.modelDog.EditPet((clsDog) pet);
             }
         }
            return true;
@@ -62,10 +63,10 @@ public class ctlPet {
     public boolean DeletePet(clsPet pet){
        try{
            switch(pet.getAnimalType()){
-            case "Gato"->{
+            case "Cat"->{
                 this.modelCat.DeletePet((clsCat) pet);
             }
-            case "Perro"->{
+            case "Dog"->{
                 this.modelDog.DeletePet((clsDog) pet);
             }
         }
@@ -93,6 +94,24 @@ public class ctlPet {
            return null;
        }
         
-    }
+    } 
+    public LinkedList<clsPet> ListPet(String type){
+        LinkedList<clsPet> petList = null;
+        try{
+            switch(type){
+                case "Cat"->{
+                    petList = this.modelCat.ListPet();
+                }
+                case "Dog"->{
+                    petList = this.modelDog.ListPet();
+                }
+            }
+            return petList;
+       }catch (Exception e) {
+            System.err.println("Error:"+ e.getMessage());
+           return null;
+       }
+        
+    } 
     
 }
