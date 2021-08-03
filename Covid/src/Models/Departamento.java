@@ -112,8 +112,10 @@ public class Departamento extends Perseverance {
             
             if( rows > 0 ){
                 ResultSet generateKeys = statement.getGeneratedKeys();
-                if( generateKeys.next() )
+                if( generateKeys.next() ){
                     this.id = generateKeys.getInt(1);
+                    return this.id;
+                }
             }
                     
         } catch(Exception e){
