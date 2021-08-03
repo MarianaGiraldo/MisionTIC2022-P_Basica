@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class DB {
     private String user = "root";
     private String password = "";
-    private String url="jdbc:mysql://localhost:3306/covid";
+    private String url="jdbc:mysql://localhost:3306/storiesdb";
     private String driver = "com.mysql.cj.jdbc.Driver";
 
     public DB() {
@@ -44,6 +44,5 @@ public class DB {
         
         return conn;
     }
-    
     
 }
