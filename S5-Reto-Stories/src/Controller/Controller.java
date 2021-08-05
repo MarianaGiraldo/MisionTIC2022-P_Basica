@@ -5,25 +5,28 @@
  */
 package Controller;
 
-import Model.Story;
-import Model.User;
+import Classes.Story;
+import Classes.User;
+import Model.StoryModel;
+import Model.UserModel;
+import java.util.LinkedList;
 
 /**
  *
  * @author maria
  */
 public class Controller {
-    private final Story modelStory;
-    private final User modelUser;
+    private final StoryModel modelStory;
+    private final UserModel modelUser;
 
     public Controller() {
-        this.modelStory = new Story();
-        this.modelUser = new User();
+        this.modelStory = new StoryModel();
+        this.modelUser = new UserModel();
     }
 
     public boolean SaveUser(User user) {
         try {
-            user.save();
+            this.modelUser.save(user);
             return true;
         } catch (Exception e) {
             System.err.println("Error: "+ e.getMessage());
@@ -42,9 +45,9 @@ public class Controller {
         return user;
     }
     
-    public boolean DeleteUser(User user) {
+    public boolean DeleteUser(Integer id) {
         try {
-            user.delete();
+            this.modelUser.delete(id);
             return true;
         } catch (Exception e) {
             System.err.println("Error: "+ e.getMessage());
@@ -55,7 +58,7 @@ public class Controller {
     
     public boolean SaveStory(Story story) {
         try {
-            story.save();
+            this.modelStory.save(story);
             return true;
         } catch (Exception e) {
             System.err.println("Error: "+ e.getMessage());
@@ -63,10 +66,10 @@ public class Controller {
         }
     }
     
-    public Story SearchStory(Integer id) {
+    public Story SearchStory(String title) {
         Story story = null;
         try {
-            story = this.modelStory.get(id);
+            story = this.modelStory.getByTitle(title);
             return story;
         } catch (Exception e) {
             System.err.println("Error: "+ e.getMessage());
@@ -74,14 +77,26 @@ public class Controller {
         return story;
     }
     
-    public boolean DeleteStory(Story story) {
+    public boolean DeleteStory(Integer id) {
         try {
-            story.delete();
+            this.modelStory.delete(id);
+            System.out.println("Entrando al controlador");
             return true;
         } catch (Exception e) {
             System.err.println("Error: "+ e.getMessage());
             return false;
         }
     }
+    
+    public LinkedList<Story> SearchStoryByKeyWords(String[] words){
+        LinkedList<Story> stories = null;
+        try {
+            stories = this.modelStory.getByKeyWords(words);
+            return stories;
+        } catch (Exception e) {
+            System.err.println("Error: "+ e.getMessage());
+        }
+        return stories;
+    };
     
 }

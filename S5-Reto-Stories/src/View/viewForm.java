@@ -5,9 +5,13 @@
  */
 package View;
 
+import Classes.Story;
+import Classes.User;
 import Controller.Controller;
-import Model.User;
+import Model.UserModel;
 import java.awt.HeadlessException;
+import java.util.LinkedList;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,6 +20,8 @@ import javax.swing.JOptionPane;
  */
 public class viewForm extends javax.swing.JFrame {
     Controller controller = new Controller();
+    
+    LinkedList<Story> storyObjectList = new LinkedList<>();
     
     /**
      * Creates new form viewForm
@@ -52,28 +58,31 @@ public class viewForm extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtTitle = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtTitle1 = new javax.swing.JTextField();
+        txtUserIdStory = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtShortDescription = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtStory = new javax.swing.JTextArea();
         BtnSaveStory = new javax.swing.JButton();
         BtnSearchStory = new javax.swing.JButton();
         BtnEditStory = new javax.swing.JButton();
         BtnDeleteBook = new javax.swing.JButton();
         LbInstructions = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        txtStoryReg = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        cbGenre = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         txtKeyWords = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         ListStories = new javax.swing.JList<>();
         BtnSearchStoryKeyWords = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
-        txtStoryId = new javax.swing.JTextField();
         BtnViewStory = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        txtStorySearched = new javax.swing.JTextArea();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -92,18 +101,6 @@ public class viewForm extends javax.swing.JFrame {
         jLabel4.setText("Last Name");
 
         jLabel5.setText("User id:");
-
-        txtDocument.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDocumentActionPerformed(evt);
-            }
-        });
-
-        txtUserName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUserNameActionPerformed(evt);
-            }
-        });
 
         txtUserId.setEditable(false);
 
@@ -146,27 +143,28 @@ public class viewForm extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtDocument)
-                    .addComponent(txtUserName)
-                    .addComponent(txtUserLastname)
-                    .addComponent(txtUserId))
-                .addGap(160, 160, 160))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(BtnSaveUser)
-                .addGap(39, 39, 39)
-                .addComponent(BtnSearchUser)
-                .addGap(36, 36, 36)
-                .addComponent(BtnEditUser)
-                .addGap(48, 48, 48)
-                .addComponent(BtnDeleteUser)
-                .addContainerGap(49, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(BtnSaveUser)
+                        .addGap(39, 39, 39)
+                        .addComponent(BtnSearchUser)
+                        .addGap(36, 36, 36)
+                        .addComponent(BtnEditUser)
+                        .addGap(48, 48, 48)
+                        .addComponent(BtnDeleteUser)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtDocument, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                            .addComponent(txtUserName)
+                            .addComponent(txtUserLastname)
+                            .addComponent(txtUserId))
+                        .addGap(160, 160, 160))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,13 +185,13 @@ public class viewForm extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtUserId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnSaveUser)
                     .addComponent(BtnSearchUser)
                     .addComponent(BtnEditUser)
                     .addComponent(BtnDeleteUser))
-                .addContainerGap())
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Users", jPanel1);
@@ -202,33 +200,17 @@ public class viewForm extends javax.swing.JFrame {
 
         jLabel6.setText("Title: ");
 
-        txtTitle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTitleActionPerformed(evt);
-            }
-        });
-
         jLabel7.setText("User ID: ");
-
-        txtTitle1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTitle1ActionPerformed(evt);
-            }
-        });
 
         jLabel8.setText("Short Description: ");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
         jLabel9.setText("Story:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtStory.setColumns(20);
+        txtStory.setLineWrap(true);
+        txtStory.setRows(5);
+        txtStory.setWrapStyleWord(true);
+        jScrollPane1.setViewportView(txtStory);
 
         BtnSaveStory.setBackground(new java.awt.Color(60, 254, 100));
         BtnSaveStory.setText("Save");
@@ -262,42 +244,68 @@ public class viewForm extends javax.swing.JFrame {
             }
         });
 
+        jLabel12.setText("Story id:");
+
+        txtStoryReg.setEditable(false);
+
+        jLabel13.setText("Genre:");
+
+        cbGenre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Action", "Romance", "Science Fiction", "Literary fiction", "Mistery", "Thriller", "Horror", "Historical", "Fantasy", "Dystopian", "Magical Realism", "Realist Literatur" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(50, 50, 50)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtUserIdStory, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtShortDescription)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cbGenre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(jLabel13)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(BtnSaveStory)
-                        .addGap(42, 42, 42)
-                        .addComponent(BtnSearchStory)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BtnEditStory)
-                        .addGap(39, 39, 39)
-                        .addComponent(BtnDeleteBook)))
-                .addContainerGap(43, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(LbInstructions, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtStoryReg, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(BtnSaveStory)
+                                .addGap(53, 53, 53)
+                                .addComponent(BtnSearchStory)
+                                .addGap(57, 57, 57)
+                                .addComponent(BtnEditStory)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BtnDeleteBook))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(LbInstructions, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(73, 73, 73))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,24 +315,34 @@ public class viewForm extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(txtTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                    .addComponent(txtUserIdStory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(txtShortDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(cbGenre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(BtnSaveStory)
-                        .addComponent(BtnSearchStory))
-                    .addComponent(BtnDeleteBook)
-                    .addComponent(BtnEditStory))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(LbInstructions, javax.swing.GroupLayout.DEFAULT_SIZE, 13, Short.MAX_VALUE))
+                        .addComponent(jLabel12)
+                        .addComponent(txtStoryReg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BtnSearchStory)
+                    .addComponent(BtnSaveStory)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(BtnEditStory)
+                        .addComponent(BtnDeleteBook)))
+                .addGap(18, 18, 18)
+                .addComponent(LbInstructions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Story registration", jPanel2);
@@ -338,6 +356,11 @@ public class viewForm extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        ListStories.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                ListStoriesValueChanged(evt);
+            }
+        });
         jScrollPane2.setViewportView(ListStories);
 
         BtnSearchStoryKeyWords.setBackground(new java.awt.Color(110, 180, 250));
@@ -348,8 +371,6 @@ public class viewForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setText("Story ID:");
-
         BtnViewStory.setBackground(new java.awt.Color(250, 180, 250));
         BtnViewStory.setText("View");
         BtnViewStory.addActionListener(new java.awt.event.ActionListener() {
@@ -358,9 +379,16 @@ public class viewForm extends javax.swing.JFrame {
             }
         });
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane3.setViewportView(jTextArea2);
+        txtStorySearched.setEditable(false);
+        txtStorySearched.setColumns(20);
+        txtStorySearched.setLineWrap(true);
+        txtStorySearched.setRows(5);
+        txtStorySearched.setToolTipText("");
+        txtStorySearched.setWrapStyleWord(true);
+        txtStorySearched.setName(""); // NOI18N
+        jScrollPane3.setViewportView(txtStorySearched);
+
+        jLabel14.setText("Select from the list to read the story:");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -368,49 +396,44 @@ public class viewForm extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtKeyWords)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtKeyWords, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(jLabel11)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtStoryId)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel14)))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(BtnSearchStoryKeyWords, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(BtnViewStory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane3)))
-                .addContainerGap(17, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(txtKeyWords, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnSearchStoryKeyWords))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 19, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(txtStoryId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BtnViewStory))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane3)))
+                            .addComponent(jLabel10)
+                            .addComponent(txtKeyWords, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(BtnSearchStoryKeyWords)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(BtnViewStory)
+                            .addComponent(jLabel14))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -447,22 +470,16 @@ public class viewForm extends javax.swing.JFrame {
             if(document.equals("") || name.equals("") || lastname.equals("")){
                 JOptionPane.showMessageDialog(this, "Fill all fields");
             }else{
-                User user = new User(0, document, name, lastname);
-                //catObjectList.add(cat);
+                User user = new User(null, document, name, lastname);
                 controller.SaveUser(user);
-                //this.FillJList();
-                //this.clearCatFields();
+                this.clearUsersFields();
                 JOptionPane.showMessageDialog(this, "The record has been saved");
             }
 
         }catch(HeadlessException e){
-            JOptionPane.showMessageDialog(this, ("Error: " + e));
+            JOptionPane.showMessageDialog(this, ("Error: " + e.getMessage()));
         }
     }//GEN-LAST:event_BtnSaveUserActionPerformed
-
-    private void txtUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUserNameActionPerformed
 
     private void BtnSearchUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSearchUserActionPerformed
         String document = txtDocument.getText();
@@ -480,55 +497,169 @@ public class viewForm extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnSearchUserActionPerformed
 
     private void BtnEditUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditUserActionPerformed
-        // TODO add your handling code here:
+        try {
+            Integer id= Integer.parseInt(txtUserId.getText());
+            String document = txtDocument.getText();
+            String name = txtUserName.getText();
+            String lastname = txtUserLastname.getText();
+            
+            if(document.equals("") || name.equals("") || lastname.equals("")){
+                JOptionPane.showMessageDialog(this, "Fill all fields");
+            }else{
+                User user = new User(id, document, name, lastname);
+                controller.SaveUser(user);
+                this.clearUsersFields();
+                JOptionPane.showMessageDialog(this, "The record has been updated");
+            }
+
+        }catch(HeadlessException e){
+            JOptionPane.showMessageDialog(this, ("Error: " + e.getMessage()));
+        }
     }//GEN-LAST:event_BtnEditUserActionPerformed
 
     private void BtnDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDeleteUserActionPerformed
-        // TODO add your handling code here:
+        Integer id= Integer.parseInt(txtUserId.getText()) ;
+        
+        Boolean deleted = controller.DeleteUser(id);
+        
+        if(!deleted){
+            JOptionPane.showMessageDialog(this, "Document not found");
+        }else{
+            JOptionPane.showMessageDialog(this, "User deleted successfully");
+            this.clearUsersFields();
+            
+        }
     }//GEN-LAST:event_BtnDeleteUserActionPerformed
 
-    private void txtDocumentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDocumentActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDocumentActionPerformed
-
-    private void txtTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTitleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTitleActionPerformed
-
-    private void txtTitle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTitle1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTitle1ActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
     private void BtnSaveStoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSaveStoryActionPerformed
-        // TODO add your handling code here:
+        try {
+            String title = txtTitle.getText();
+            int user_id = Integer.parseInt(txtUserIdStory.getText());
+            String short_description = txtShortDescription.getText();
+            String story = txtStory.getText();
+            String genre = cbGenre.getSelectedItem().toString();
+            
+            if(title.equals("") || txtUserIdStory.getText().equals("") || story.equals("") || short_description.equals("")){
+                JOptionPane.showMessageDialog(this, "Fill all fields");
+            }else{
+                Story storySave = new Story(null, user_id, title, short_description, story, genre, title);
+                controller.SaveStory(storySave);
+                this.clearStoriesRegFields();
+                JOptionPane.showMessageDialog(this, "The record has been saved");
+            }
+
+        }catch(HeadlessException e){
+            JOptionPane.showMessageDialog(this, ("Error: " + e.getMessage()));
+        }
     }//GEN-LAST:event_BtnSaveStoryActionPerformed
 
     private void BtnSearchStoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSearchStoryActionPerformed
-        LbInstructions.setText("To search, you must enter the full book title and user_id");
-        
+        String title = txtTitle.getText();
+        if(title.equals("") || txtUserIdStory.getText().equals("")){
+                JOptionPane.showMessageDialog(this, "Fill all fields");
+        }
+        Story story = controller.SearchStory(title);
+        txtShortDescription.setText(story.getShort_description());
+        txtStory.setText(story.getStory());
+        cbGenre.setSelectedItem(story.getGenre());
+        txtUserIdStory.setText(story.getUser_id()+"");
+        txtStoryReg.setText(story.getId()+"");
         
     }//GEN-LAST:event_BtnSearchStoryActionPerformed
 
     private void BtnSearchStoryKeyWordsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSearchStoryKeyWordsActionPerformed
-        // TODO add your handling code here:
+        try {
+            String keyWords = txtKeyWords.getText();
+            String[] words = keyWords.split(" ");
+
+            this.storyObjectList= controller.SearchStoryByKeyWords(words);
+            this.FillJlist();
+        } catch (Exception e) {
+            System.out.println("Error searching by key words: "+e.getMessage());
+        }
+                
     }//GEN-LAST:event_BtnSearchStoryKeyWordsActionPerformed
 
     private void BtnViewStoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnViewStoryActionPerformed
-        // TODO add your handling code here:
+        String selected = ListStories.getSelectedValue();
+        String[] words = selected.split(" - ");
+        String title= words[1];
+        Story story = controller.SearchStory(title);
+        txtStorySearched.setText(story.getStory());
+        
     }//GEN-LAST:event_BtnViewStoryActionPerformed
 
     private void BtnEditStoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditStoryActionPerformed
-        // TODO add your handling code here:
+        try {
+            int id = Integer.parseInt(txtStoryReg.getText());
+            String title = txtTitle.getText();
+            int user_id = Integer.parseInt(txtUserIdStory.getText());
+            String short_description = txtShortDescription.getText();
+            String story = txtStory.getText();
+            String genre = cbGenre.getSelectedItem().toString();
+            
+            if(title.equals("") || txtUserIdStory.getText().equals("") || story.equals("") || short_description.equals("")){
+                JOptionPane.showMessageDialog(this, "Fill all fields");
+            }else{
+                Story storySave = new Story(id, user_id, title, short_description, story, genre, title);
+                controller.SaveStory(storySave);
+                this.clearStoriesRegFields();
+                JOptionPane.showMessageDialog(this, "The record has been updated");
+            }
+
+        }catch(HeadlessException e){
+            JOptionPane.showMessageDialog(this, ("Error: " + e.getMessage()));
+        }
     }//GEN-LAST:event_BtnEditStoryActionPerformed
 
     private void BtnDeleteBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDeleteBookActionPerformed
-        // TODO add your handling code here:
+        try {
+            Integer id= Integer.parseInt(txtStoryReg.getText()) ;
+            Boolean deleted = controller.DeleteStory(id);
+            if(!deleted){
+                JOptionPane.showMessageDialog(this, "Story not found");
+            }else{
+                JOptionPane.showMessageDialog(this, "Story deleted successfully");
+            this.clearStoriesRegFields();
+            }
+        } catch (HeadlessException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "You have to search the Story before you delete it.\n"
+                    + e.getMessage());
+        }
+        
     }//GEN-LAST:event_BtnDeleteBookActionPerformed
 
+    private void ListStoriesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_ListStoriesValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ListStoriesValueChanged
+
+    public void clearStoriesRegFields(){
+        String t = "";
+        txtTitle.setText(t);
+        txtShortDescription.setText(t);
+        txtUserIdStory.setText(t);
+        cbGenre.setSelectedIndex(0);
+        txtStory.setText(t);
+        txtStoryReg.setText(t);
+    }
+    public void clearUsersFields(){
+        String t = "";
+        txtDocument.setText(t);
+        txtUserName.setText(t);
+        txtUserLastname.setText(t);
+        txtUserId.setText(t);
+    }
+    
+    private void FillJlist(){
+        DefaultListModel model = new DefaultListModel();
+        int index = 0;
+        for (Story story: storyObjectList) {       
+            String data = story.getId()+ " - "+ story.getTitle();
+            model.add(index, data);
+            index++;
+        }
+        ListStories.setModel(model);
+    }
     /**
      * @param args the command line arguments
      */
@@ -545,15 +676,11 @@ public class viewForm extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(viewForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(viewForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(viewForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(viewForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        
         //</editor-fold>
 
         /* Create and display the form */
@@ -577,9 +704,12 @@ public class viewForm extends javax.swing.JFrame {
     private javax.swing.JButton BtnViewStory;
     private javax.swing.JLabel LbInstructions;
     private javax.swing.JList<String> ListStories;
+    private javax.swing.JComboBox<String> cbGenre;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -595,15 +725,15 @@ public class viewForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField txtDocument;
     private javax.swing.JTextField txtKeyWords;
-    private javax.swing.JTextField txtStoryId;
+    private javax.swing.JTextField txtShortDescription;
+    private javax.swing.JTextArea txtStory;
+    private javax.swing.JTextField txtStoryReg;
+    private javax.swing.JTextArea txtStorySearched;
     private javax.swing.JTextField txtTitle;
-    private javax.swing.JTextField txtTitle1;
     private javax.swing.JTextField txtUserId;
+    private javax.swing.JTextField txtUserIdStory;
     private javax.swing.JTextField txtUserLastname;
     private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables

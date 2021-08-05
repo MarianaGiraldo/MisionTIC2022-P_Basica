@@ -11,8 +11,8 @@ public abstract class Perseverance {
     }
     
     public abstract Object get(Integer id) throws Exception;
-    public abstract Integer save() throws Exception;
-    public abstract Integer delete() throws Exception;
+    public abstract Integer save(Object object) throws Exception;
+    public abstract Boolean delete(Object object) throws Exception;
     
     public Connection createConnection(){
         return this.db.createConnection();
