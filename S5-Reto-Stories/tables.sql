@@ -19,3 +19,6 @@ CREATE TABLE `storiesdb`.`tb_users` (
 	`lastname` VARCHAR(50) NOT NULL , 
 	PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
+
+ALTER TABLE `tb_users` ADD UNIQUE(`document`);
+ALTER TABLE `tb_stories` ADD UNIQUE(`title`);
