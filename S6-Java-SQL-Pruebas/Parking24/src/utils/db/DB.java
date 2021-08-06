@@ -7,12 +7,12 @@ public class DB {
     
     private String user = "root";
     private String password = "";
-    private String url = "jdbc:mysql://localhost:3306/parking";
+    private String url = "jdbc:mysql://localhost:3306/parkingdb";
     private String driver = "com.mysql.cj.jdbc.Driver";
     
     private String userTest = "root";
     private String passwordTest = "";
-    private String urlTestInit = "jdbc:h2:mem:test;MODE=MYSQL;INIT=RUNSCRIPT FROM 'C:/Users/user/Desktop/model_parking.sql';DB_CLOSE_DELAY=-1";
+    private String urlTestInit = "jdbc:h2:mem:test;MODE=MYSQL;INIT=RUNSCRIPT FROM 'C:/NetBeansProjects/S6-Java-SQL-Pruebas/model_parking.sql';DB_CLOSE_DELAY=-1";
     private String urlTest = "jdbc:h2:mem:test;MODE=MYSQL;";
     private String driverTest = "org.h2.Driver";
 
