@@ -44,5 +44,13 @@ public class Operaciones {
             throw e;
         }
     }
-    
+    public double Promedio(long[] numeros){
+        double promedio;
+        long sumatoria = 0;
+        for (long numero : numeros) {
+            sumatoria += numero;
+        }
+        promedio = this.Dividir(sumatoria, numeros.length);
+        return promedio;
+    }
 }

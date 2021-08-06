@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="PruebaOperaciones" tests="9" skipped="0" failures="0" errors="0" timestamp="2021-08-06T02:05:35" hostname="LAPTOP-LUI4SN7R" time="8.635">
+  <properties/>
+  <testcase name="PruebaSumarNumeros" classname="PruebaOperaciones" time="7.04"/>
+  <testcase name="PruebaMultiplicarNumeros" classname="PruebaOperaciones" time="0.019"/>
+  <testcase name="PruebaDividirNumeros" classname="PruebaOperaciones" time="0.022"/>
+  <testcase name="PruebaRestarNumeros" classname="PruebaOperaciones" time="0.006"/>
+  <testcase name="PruebaPromedioNumerosVacios" classname="PruebaOperaciones" time="1.215"/>
+  <testcase name="PruebaMultiplicarListaNumeros" classname="PruebaOperaciones" time="0.002"/>
+  <testcase name="PruebaPromedioNumeros" classname="PruebaOperaciones" time="0.245"/>
+  <testcase name="PruebaSumarListaNumeros" classname="PruebaOperaciones" time="0.028"/>
+  <testcase name="PruebaDividirNumerosException" classname="PruebaOperaciones" time="0.026"/>
+  <system-out><![CDATA[Método único antes de la clase
+Inicio del método
+Final del método
+Inicio del método
+Final del método
+Inicio del método
+Final del método
+Inicio del método
+Final del método
+Inicio del método
+Final del método
+Inicio del método
+Final del método
+Inicio del método
+Final del método
+Inicio del método
+Final del método
+Inicio del método
+Final del método
+Método final
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import Calculadora.GeneradorNumeros;
 import Calculadora.Operaciones;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -11,13 +12,24 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 
 /**
  *
  * @author maria
  */
+@RunWith(MockitoJUnitRunner.class)
 public class PruebaOperaciones {
+    @InjectMocks
     private final Operaciones operaciones;
+    
+    @Mock
+    GeneradorNumeros generador;
+    
     public PruebaOperaciones() {
         operaciones = new Operaciones();
     }
@@ -91,6 +103,18 @@ public class PruebaOperaciones {
         long num2=0;
         long num1=20;
         assertEquals(ArithmeticException.class, operaciones.Dividir(num1, num2));
+    }
+    
+    @Test (expected = ArithmeticException.class)
+    public void PruebaPromedioNumerosVacios(){
+        Mockito.when(this.generador.ListaNumeros()).thenReturn(new long[]{});
+        assertEquals(ArithmeticException.class, this.operaciones.Promedio(this.generador.ListaNumeros()));
+    }
+    
+    @Test 
+    public void PruebaPromedioNumeros(){
+        Mockito.when(this.generador.ListaNumeros()).thenReturn(new long[]{1,2,3,4,5});
+        assertEquals(3.0, this.operaciones.Promedio(this.generador.ListaNumeros()), 0.01);
     
     }
     

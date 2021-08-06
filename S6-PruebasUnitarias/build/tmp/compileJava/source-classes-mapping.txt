@@ -1,2 +1,4 @@
 Calculadora/Operaciones.java
  Calculadora.Operaciones
+Calculadora/GeneradorNumeros.java
+ Calculadora.GeneradorNumeros
