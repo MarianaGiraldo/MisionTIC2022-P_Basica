@@ -17,8 +17,9 @@ import static org.junit.Assert.*;
  * @author maria
  */
 public class PruebaOperaciones {
-    
+    private final Operaciones operaciones;
     public PruebaOperaciones() {
+        operaciones = new Operaciones();
     }
     
     @BeforeClass
@@ -47,32 +48,50 @@ public class PruebaOperaciones {
     @Test
     public void PruebaSumarListaNumeros() {
         long[] listaNumeros = new long[]{1,2,3,4,5};
-        Operaciones operaciones = new Operaciones();
-        assertEquals(15, operaciones.Suma(listaNumeros));
+        assertEquals(15, operaciones.Sumar(listaNumeros));
     }
     
     @Test
     public void PruebaSumarNumeros() {
         long num1=5;
         long num2=20;
-        Operaciones operaciones = new Operaciones();
-        assertEquals(25, operaciones.Suma(num1, num2));
+        assertEquals(25, operaciones.Sumar(num1, num2));
     }
     
     @Test
     public void PruebaRestarNumeros() {
+        long num1=100;
+        long num2=20;
+        assertEquals(80, operaciones.Restar(num1, num2));
     }
     
     @Test
     public void PruebaMultiplicarListaNumeros() {
+        long[] listaNumeros = new long[]{1,2,3,4};
+        assertEquals(24, operaciones.Multiplicar(listaNumeros));
+    
     }
     
     @Test
     public void PruebaMultiplicarNumeros() {
+        long num1=5;
+        long num2=10;
+        assertEquals(50, operaciones.Multiplicar(num1, num2));
     }
     
     @Test
     public void PruebaDividirNumeros() {
+        long num2=5;
+        long num1=20;
+        assertEquals(4, operaciones.Dividir(num1, num2), 0.0001);
+    }
+    
+    @Test (expected = ArithmeticException.class)
+    public void PruebaDividirNumerosException() {
+        long num2=0;
+        long num1=20;
+        assertEquals(ArithmeticException.class, operaciones.Dividir(num1, num2));
+    
     }
     
 }

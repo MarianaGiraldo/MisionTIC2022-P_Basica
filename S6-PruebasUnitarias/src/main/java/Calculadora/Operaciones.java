@@ -11,11 +11,11 @@ package Calculadora;
  */
 public class Operaciones {
     
-    public long Suma(long num1, long num2){
+    public long Sumar(long num1, long num2){
         return num1+num2;
     }
         
-    public long Suma(long[] numeros){
+    public long Sumar(long[] numeros){
         long resultado = 0;
         for (long numero : numeros) {
             resultado += numero;
@@ -23,21 +23,21 @@ public class Operaciones {
         return resultado;
     }
     
-    public long Multiplicacion(long num1, long num2){
+    public long Multiplicar(long num1, long num2){
         return num1*num2;
     }
         
-    public long Multiplicacion(long[] numeros){
+    public long Multiplicar(long[] numeros){
         long resultado = 1;
         for (long numero : numeros) {
             resultado *= numero;
         }
         return resultado;
     }
-    public long Resta(long num1, long num2){
+    public long Restar(long num1, long num2){
         return num1-num2;
     }
-    public long Division(long num1, long num2){
+    public long Dividir(long num1, long num2){
         try {
             return num1/num2;
         } catch (ArithmeticException e) {
