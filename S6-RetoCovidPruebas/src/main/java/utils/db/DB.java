@@ -52,6 +52,7 @@ public class DB {
         } else {
             try{
                 conn = (Connection) DriverManager.getConnection(url, user, password);
+                System.out.println("Entra a la base de datos real");
             } catch( SQLException e){
                 e.printStackTrace();
                 System.err.println("Error al obtener el conector");

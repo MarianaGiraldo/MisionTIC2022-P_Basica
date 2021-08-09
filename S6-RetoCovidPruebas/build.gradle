@@ -12,6 +12,9 @@ repositories {
 dependencies {
     testImplementation     'junit:junit:4.13'
 
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    implementation 'mysql:mysql-connector-java:8.0.26'
+    
     // https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy-agent
     testImplementation 'net.bytebuddy:byte-buddy-agent:1.10.18'
     

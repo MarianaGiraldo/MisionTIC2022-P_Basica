@@ -67,7 +67,7 @@ goto fail
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\S6-RetoCovidPruebas.jar;%APP_HOME%\lib\byte-buddy-1.10.18.jar
+set CLASSPATH=%APP_HOME%\lib\S6-RetoCovidPruebas.jar;%APP_HOME%\lib\mysql-connector-java-8.0.26.jar;%APP_HOME%\lib\byte-buddy-1.10.18.jar;%APP_HOME%\lib\protobuf-java-3.11.4.jar
 
 
 @rem Execute S6-RetoCovidPruebas

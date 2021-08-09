@@ -138,18 +138,16 @@ public class Departamento extends Perseverance {
             PreparedStatement statementMun = conn.prepareStatement(queryMun, Statement.RETURN_GENERATED_KEYS);
             statementMun.setInt(1, this.id);
             statementMun.executeUpdate();
+            System.out.println("Municipios con id="+this.id+" de departamento eliminados");
             
             String query = "DELETE FROM departamento WHERE id=? ";
             PreparedStatement statement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, this.id);
             int rows = statement.executeUpdate();
+            System.out.println("Departamento eliminado");
             
             if( rows > 0 ){
-                ResultSet generateKeys = statement.getGeneratedKeys();
-                if( generateKeys.next() ){
-                    this.id = generateKeys.getInt(1);
-                    return this.id;
-                }
+                return this.id;
             }
                     
         } catch(Exception e){

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="DepartamentoTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-08-09T19:18:27" hostname="LAPTOP-LUI4SN7R" time="3.913">
+  <properties/>
+  <testcase name="getDepartamento_test" classname="DepartamentoTest" time="3.913"/>
+  <system-out><![CDATA[Entra a la base de datos de prueba
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
