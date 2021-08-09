@@ -33,9 +33,9 @@ CREATE TABLE casos (
 	estado VARCHAR(50) NOT NULL,
 	pais_importado VARCHAR(50) NULL DEFAULT NULL,
 	recuperado VARCHAR(50) NOT NULL,
-	fecha_inicio_sintomas DATE NOT NULL,
-	fecha_diagnostico DATE NOT NULL,
-	fecha_recuperacion DATE NULL DEFAULT NULL,
+	fecha_inicio_sintomas DATE  NULL,
+	fecha_diagnostico DATE  NULL,
+	fecha_recuperacion DATE  DEFAULT NULL,
 	fecha_muerte DATE NULL DEFAULT NULL,
 	PRIMARY KEY (id)
 )
