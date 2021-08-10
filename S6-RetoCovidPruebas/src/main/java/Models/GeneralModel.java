@@ -32,6 +32,31 @@ public class GeneralModel extends Perseverance{
         
         return depList;
     }
+    
+    public List<Municipio> getMunicipioList(){
+        List<Municipio> munList = new ArrayList();
+        Departamento dep = new Departamento();
+        try(Connection conn = super.createConnection()){
+            String query = "SELECT id, departamento_id , nombre, codigo FROM municipio order by codigo";
+            PreparedStatement statement = conn.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+            
+            while( result.next() ){
+                Municipio mun = new Municipio();
+                mun.setId( result.getInt("id") );
+                int depId =result.getInt("departamento_id");
+                dep = dep.get(depId);
+                mun.setDepartamento(dep);
+                mun.setNombre( result.getString("nombre") );
+                mun.setCodigo( result.getInt("codigo") );
+                munList.add( mun );
+            }
+        } catch(Exception e){
+            System.out.println("No se puede cargar la lista de Municipios");
+        }
+        
+        return munList;
+    }
 
     @Override
     public Object get(Integer id) throws Exception {

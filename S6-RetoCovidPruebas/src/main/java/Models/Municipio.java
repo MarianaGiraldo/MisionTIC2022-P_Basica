@@ -26,14 +26,14 @@ public class Municipio extends Perseverance {
     }
     
     
-    public Municipio getMunicipioById(Integer id){
+    public Municipio getMunicipioByCode(Integer code){
         Municipio mun = null;
         
         try(Connection conn = createConnection()){
             String query = "SELECT mun.id, mun.departamento_id, mun.nombre, mun.codigo "
-                    + "     FROM municipio mun WHERE mun.id = ?";
+                    + "     FROM municipio mun WHERE mun.codigo = ?";
             PreparedStatement statement = conn.prepareStatement(query);
-            statement.setInt(1, id);
+            statement.setInt(1, code);
             ResultSet result = statement.executeQuery();
             
             int row_count = 0;
@@ -41,7 +41,7 @@ public class Municipio extends Perseverance {
                 row_count++;
                 
                 if( row_count > 1)
-                    throw new Exception("Se encontro más de un resultado.");
+                    throw new Exception("Se encontro mas de un resultado.");
                 
                 this.id = result.getInt(1);
                 this.nombre = result.getString(3);
@@ -56,7 +56,7 @@ public class Municipio extends Perseverance {
             
         }catch(Exception e){
             System.err.println(e);
-            System.err.println("No se puedo obtener la información del objeto id=" + id + " en la tabla municipio.");
+            System.err.println("No se puedo obtener la informacion del objeto codigo=" + code + " en la tabla municipio.");
         }
         
         return mun;
@@ -79,7 +79,7 @@ public class Municipio extends Perseverance {
                 row_count++;
                 
                 if( row_count > 1)
-                    throw new Exception("Se encontro más de un resultado.");
+                    throw new Exception("Se encontro mas de un resultado.");
                 
                 this.id = result.getInt(1);
                 this.nombre = result.getString(2);
@@ -94,7 +94,7 @@ public class Municipio extends Perseverance {
             
         }catch(Exception e){
             System.err.println(e);
-            throw new Exception("No se puedo obtener la información del objeto id=" + id + " en la tabla municipio.");
+            throw new Exception("No se puedo obtener la informacion del objeto id=" + id + " en la tabla municipio.");
         }
         
         return municipio;
@@ -146,9 +146,7 @@ public class Municipio extends Perseverance {
             int rows = statement.executeUpdate();
             
             if( rows > 0 ){
-                ResultSet generateKeys = statement.getGeneratedKeys();
-                if( generateKeys.next() )
-                    id = generateKeys.getInt(1);
+                return this.id;
             }
                     
         } catch(Exception e){

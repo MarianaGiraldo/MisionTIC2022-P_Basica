@@ -1,27 +1,3 @@
-utils/db/Searchs.java
- utils.db.Searchs
-utils/db/DB.java
- utils.db.DB
-controller/MunicipioController.java
- controller.MunicipioController
-controller/CasosController.java
- controller.CasosController
-utils/db/DBConf.java
- utils.db.DBConf
-Models/Casos.java
- Models.Casos
-S6/RetoCovidPruebas/Main.java
- S6.RetoCovidPruebas.Main
-utils/db/Perseverance.java
- utils.db.Perseverance
-Models/Departamento.java
- Models.Departamento
-Models/Municipio.java
- Models.Municipio
-Models/GeneralModel.java
- Models.GeneralModel
-controller/DepartamentoController.java
- controller.DepartamentoController
 View/View.java
  View.View
  View.View$1
@@ -31,3 +7,27 @@ View/View.java
  View.View$5
  View.View$6
  View.View$7
+controller/DepartamentoController.java
+ controller.DepartamentoController
+utils/db/Searchs.java
+ utils.db.Searchs
+controller/CasosController.java
+ controller.CasosController
+utils/db/DBConf.java
+ utils.db.DBConf
+Models/Casos.java
+ Models.Casos
+S6/RetoCovidPruebas/Main.java
+ S6.RetoCovidPruebas.Main
+Models/Departamento.java
+ Models.Departamento
+utils/db/DB.java
+ utils.db.DB
+utils/db/Perseverance.java
+ utils.db.Perseverance
+Models/Municipio.java
+ Models.Municipio
+Models/GeneralModel.java
+ Models.GeneralModel
+controller/MunicipioController.java
+ controller.MunicipioController
