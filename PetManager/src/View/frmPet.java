@@ -7,12 +7,28 @@ package View;
 
 import Classes.*;
 import Controller.ctlPet;
+import java.awt.BorderLayout;
 import java.awt.HeadlessException;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
@@ -33,9 +49,24 @@ public class frmPet extends javax.swing.JFrame {
         this.dogObjectList = ctlPet.ListPet("Dog");
         this.catObjectList = ctlPet.ListPet("Cat");
         this.FillJlist();
+        this.RefreshReportByHealthStatus();
         
     }
-
+    
+    private void RefreshReportByHealthStatus(){
+        LinkedList<clsReportByHealthStatus> report = ctlPet.ListPetByHealthStatus();
+        DefaultPieDataset dataset = new DefaultPieDataset();
+        for (clsReportByHealthStatus record : report) {
+            dataset.setValue(record.getHealthStatus(), record.getAmountOfPetsByHealthStatus());
+        }
+        JFreeChart chart = ChartFactory.createPieChart("Pets classification By Health Status", dataset, true, true, true);
+        ChartPanel panel = new ChartPanel(chart);
+        panel.setMouseWheelEnabled(true);
+        jpReportByHealthStatus.setLayout(new java.awt.BorderLayout());
+        jpReportByHealthStatus.add(panel, BorderLayout.CENTER);
+        jpReportByHealthStatus.validate();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -92,6 +123,8 @@ public class frmPet extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         PetList = new javax.swing.JList<>();
+        btExport = new javax.swing.JToggleButton();
+        jpReportByHealthStatus = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -502,6 +535,13 @@ public class frmPet extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(PetList);
 
+        btExport.setText("Export");
+        btExport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExportActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -510,16 +550,35 @@ public class frmPet extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(22, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btExport)
+                .addGap(209, 209, 209))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(btExport)
+                .addContainerGap())
         );
 
         PetManager.addTab("Pet List", jPanel1);
+
+        javax.swing.GroupLayout jpReportByHealthStatusLayout = new javax.swing.GroupLayout(jpReportByHealthStatus);
+        jpReportByHealthStatus.setLayout(jpReportByHealthStatusLayout);
+        jpReportByHealthStatusLayout.setHorizontalGroup(
+            jpReportByHealthStatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 503, Short.MAX_VALUE)
+        );
+        jpReportByHealthStatusLayout.setVerticalGroup(
+            jpReportByHealthStatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 226, Short.MAX_VALUE)
+        );
+
+        PetManager.addTab("Report By Health Status", jpReportByHealthStatus);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Pet Manager");
@@ -785,6 +844,50 @@ public class frmPet extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtpetIdCatActionPerformed
 
+    private void btExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExportActionPerformed
+        
+    HSSFWorkbook book = new HSSFWorkbook();
+    HSSFSheet sheet = book.createSheet("Dogs");
+    String[] headers = new String[]{
+        "Code",
+        "Name",
+        "Color",
+        "Health Status",
+        "Pedigree"
+    };  CellStyle headerCellStyle = book.createCellStyle();
+    HSSFFont font = book.createFont();
+    font.setBold(true);
+    headerCellStyle.setFont(font);
+    HSSFRow headersRow = sheet.createRow(0);
+    for (int i = 0; i < headers.length; i++) {
+        String header = headers[i];
+        HSSFCell cell = headersRow.createCell(i);
+        cell.setCellStyle(headerCellStyle);
+        cell.setCellValue(header);
+    }   for (int i = 0; i < dogObjectList.size(); i++) {
+        HSSFRow row = sheet.createRow(i+1);
+        String code = dogObjectList.get(i).getCode();
+        String name = dogObjectList.get(i).getName();
+        String color = dogObjectList.get(i).getColor();
+        String healthStatus = dogObjectList.get(i).getHealth_Status();
+        boolean pedigree = ((clsDog)dogObjectList.get(i)).isPedigree();
+        String pedigreeString = pedigree ? "Yes" : "No";
+        row.createCell(0).setCellValue(code);
+        row.createCell(1).setCellValue(name);
+        row.createCell(2).setCellValue(color);
+        row.createCell(3).setCellValue(healthStatus);
+        row.createCell(4).setCellValue(pedigreeString);
+    }   
+           
+        try (FileOutputStream file = new FileOutputStream("DogListReport.xls")) {
+            book.write(file);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(frmPet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(frmPet.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }//GEN-LAST:event_btExportActionPerformed
+
     private void FillJlist(){
         DefaultListModel model = new DefaultListModel();
         int index = 0;
@@ -875,6 +978,7 @@ public class frmPet extends javax.swing.JFrame {
     private javax.swing.JTabbedPane PetManager;
     private javax.swing.JButton SearchCat;
     private javax.swing.JButton SearchDog;
+    private javax.swing.JToggleButton btExport;
     private javax.swing.JLabel catIdLabel;
     private javax.swing.JComboBox<String> cbBreedCat;
     private javax.swing.JComboBox<String> cbBreedDog;
@@ -885,6 +989,7 @@ public class frmPet extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jpReportByHealthStatus;
     private javax.swing.JLabel labelBornYearCat;
     private javax.swing.JLabel labelBornYearDog;
     private javax.swing.JLabel labelBreedCat;

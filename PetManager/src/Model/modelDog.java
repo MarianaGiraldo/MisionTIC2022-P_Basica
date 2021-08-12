@@ -7,6 +7,7 @@ package Model;
 
 import Classes.clsDog;
 import Classes.clsPet;
+import Classes.clsReportByHealthStatus;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -181,5 +182,25 @@ public LinkedList<clsPet> ListPet(){
        }
        
     }
-        
+    
+    public LinkedList<clsReportByHealthStatus> ListPetByHealthStatus(){
+        LinkedList<clsReportByHealthStatus> report = new LinkedList<>();
+        try(Connection conn = (Connection) DriverManager.getConnection(dbData.getUrl(), dbData.getUser(), dbData.getPassword())){
+            String query = "SELECT healthStatus, COUNT(healthStatus) from tb_pet p "
+                    + " GROUP BY healthStatus";
+            PreparedStatement statementPet = conn.prepareStatement(query);
+            ResultSet result = statementPet.executeQuery(query);
+            while (result.next()){
+                clsReportByHealthStatus record = new clsReportByHealthStatus();
+                record.setHealthStatus(result.getString(1));
+                record.setAmountOfPetsByHealthStatus(result.getInt(2));
+                report.add(record);
+           }
+           return report;
+       }catch (SQLException e) {
+           System.err.println("Error: "+ e.getMessage());
+           return report;
+       }
+    }
+    
 }

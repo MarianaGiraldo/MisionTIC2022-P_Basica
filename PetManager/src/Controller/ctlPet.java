@@ -114,4 +114,10 @@ public class ctlPet {
         
     } 
     
+    public LinkedList<clsReportByHealthStatus> ListPetByHealthStatus(){
+        LinkedList<clsReportByHealthStatus> report = this.modelDog.ListPetByHealthStatus();
+        return report;
+        
+    } 
+    
 }

@@ -658,10 +658,15 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="462" max="-2" attributes="0"/>
                       <EmptySpace pref="22" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btExport" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="209" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -669,8 +674,10 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="185" max="-2" attributes="0"/>
-                      <EmptySpace pref="21" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="161" max="-2" attributes="0"/>
+                      <EmptySpace pref="11" max="32767" attributes="0"/>
+                      <Component id="btExport" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -699,7 +706,37 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JToggleButton" name="btExport">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Export"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btExportActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="jpReportByHealthStatus">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Report By Health Status">
+                <Property name="tabTitle" type="java.lang.String" value="Report By Health Status"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace min="0" pref="503" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace min="0" pref="226" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+          </Layout>
         </Container>
       </SubComponents>
     </Container>
