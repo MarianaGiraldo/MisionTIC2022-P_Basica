@@ -40,14 +40,14 @@ public class MunicipioController {
         try{
             codigo = Integer.parseInt(code);
         } catch(NumberFormatException e){
-            System.err.println("Rl campo codigo debe ser un numero");;
+            System.err.println("El campo codigo debe ser un numero");;
             return null;
         }
         try {
             if( id == null ){
                 Municipio validar_mun = (Municipio) new Municipio().getMunicipioByCode(codigo);
                 if( validar_mun != null){
-                    throw new Exception("El munartamento con el codigo " + codigo + " ya existe.");
+                    throw new Exception("El municipio con el codigo " + codigo + " ya existe.");
                 }
 
                 new_mun = new Municipio();

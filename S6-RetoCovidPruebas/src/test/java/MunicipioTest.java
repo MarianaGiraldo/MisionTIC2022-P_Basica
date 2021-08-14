@@ -7,18 +7,15 @@
 import Models.Departamento;
 import Models.Municipio;
 import controller.MunicipioController;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
-import org.hamcrest.CoreMatchers;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import utils.db.DBConf;
 import utils.db.Searchs;
 
