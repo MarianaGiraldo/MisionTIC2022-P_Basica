@@ -1,0 +1,45 @@
+apply plugin: 'java'
+apply plugin: 'jacoco'
+apply plugin: 'application'
+
+
+mainClassName = 'S7.RetoGraficas.Main'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation     'junit:junit:4.13'
+
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    implementation 'mysql:mysql-connector-java:8.0.26'
+    
+    // https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy-agent
+    testImplementation 'net.bytebuddy:byte-buddy-agent:1.10.18'
+    
+    // https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy
+    implementation 'net.bytebuddy:byte-buddy:1.10.18'
+    
+    // https://mvnrepository.com/artifact/org.mockito/mockito-core
+    testImplementation 'org.mockito:mockito-core:3.6.28'
+
+    // https://mvnrepository.com/artifact/org.objenesis/objenesis
+    testImplementation 'org.objenesis:objenesis:3.1'
+    
+    // https://mvnrepository.com/artifact/com.h2database/h2
+    testImplementation 'com.h2database:h2:1.4.200'
+    
+    // https://mvnrepository.com/artifact/org.jfree/jcommon
+    implementation 'org.jfree:jcommon:1.0.24'
+
+    // https://mvnrepository.com/artifact/org.jfree/jfreechart
+    implementation 'org.jfree:jfreechart:1.0.19'
+
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-math3
+    implementation 'org.apache.commons:commons-math3:3.6.1'
+
+    // https://mvnrepository.com/artifact/org.apache.poi/poi
+    implementation 'org.apache.poi:poi:5.0.0'
+
+}
